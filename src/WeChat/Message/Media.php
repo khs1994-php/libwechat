@@ -14,11 +14,17 @@ use WeChat\Temp\Temp;
 class Media
 {
     private $postXMLObj;
+
     private $to_user;
+
     private $from_user;
+
     private $create_time;
+
     private $media_id;
+
     private $message_id;
+
     private $key;
 
     private $cache;

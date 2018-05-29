@@ -16,8 +16,11 @@ use Redis;
 class Text
 {
     private $from_user;
+
     private $question;
+
     private $to_user;
+
     private $time;
 
     /**
@@ -59,12 +62,15 @@ class Text
         switch ($keyWord) {
             case 1:
                 $content = "<a href='https://khs1994.com'>khs1994.com 微信公众号关键词消息1</a>";
+
                 break;
             case 2:
                 $content = "<a href='https://khs1994.com'>khs1994.com 微信公众号关键词消息2</a>";
+
                 break;
             case 3:
                 $content = "<a href='https://khs1994.com'>khs1994.com 微信公众号关键词消息3</a>";
+
                 break;
             default:
                 $content = false;

@@ -126,7 +126,7 @@ class Material
             'media' => new \CURLFile($file),
         ];
 
-        if ('video' == $type) {
+        if ('video' === $type) {
             $description = [
                 'description' => json_encode([
                     'title' => $videoTitle,

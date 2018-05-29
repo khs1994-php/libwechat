@@ -7,6 +7,7 @@ namespace WeChat\Error;
 class WechatError extends \Error
 {
     public $message;
+
     public $code;
 
     private const ERROR_ARRAY = [
