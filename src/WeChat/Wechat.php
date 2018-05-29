@@ -7,9 +7,9 @@ use Pimple\Container;
 use Redis;
 
 /**
- * Class WeChat
  * @property AccessToken\AccessToken $access_token
  * @property Message\Message         $message_server
+ * @property Template\Template       $template_message
  * @property Curl                    $curl
  * @property Redis                   $cache
  */
@@ -18,6 +18,7 @@ class WeChat extends Container
     private $providers = [
         AccessToken\ServiceProvider::class,
         Message\MessageProvider::class,
+        Template\TemplateProvider::class,
     ];
 
     public function __construct(string $app_id, string $app_secret, string $token, Redis $cache)

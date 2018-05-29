@@ -8,17 +8,22 @@ class WeChatIP
 {
     const IP = 'https://api.weixin.qq.com/cgi-bin/getcallbackip?';
 
+    private $app;
+
+    public function __construct(WeChat $app)
+    {
+        $this->app = $app;
+    }
+
     /**
      * 获取微信服务器IP地址
      *
-     * @param WeChat $app
-     *
      * @return string
      */
-    public static function get(WeChat $app)
+    public function get()
     {
-        $url = self::IP.$app->access_token->get();
+        $url = self::IP.$this->app->access_token->get();
 
-        return $app['curl']->get($url);
+        return $this->app['curl']->get($url);
     }
 }
