@@ -1,6 +1,6 @@
 {
   "name": "khs1994/wechat",
-  "description": "A PHP library for the WeChat ",
+  "description": "A PHP library for the WeChat",
   "keywords": [
     "sdk",
     "api"
@@ -23,7 +23,7 @@
     "ext-json": "*",
     "doctrine/cache": "^1.6",
     "khs1994/curl": "dev-master",
-    "khs1994/tencent-ai": "^18.03",
+    "khs1994/tencent-ai": "dev-master",
     "pimple/pimple": "~3.0"
   },
   "require-dev": {
@@ -50,6 +50,8 @@
       "WeChat\\Tests\\": "tests/WeChat/"
     }
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "extra": {
     "branch-alias": {
       "dev-master": "18.06-dev"
