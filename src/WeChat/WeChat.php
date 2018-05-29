@@ -15,7 +15,7 @@ use Redis;
  * @property Curl                    $curl
  * @property Redis                   $cache
  */
-class Wechat extends Container
+class WeChat extends Container
 {
     private $providers = [
         AccessToken\ServiceProvider::class,
