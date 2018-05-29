@@ -9,14 +9,14 @@ use Redis;
 /**
  * Class WeChat
  * @property AccessToken\AccessToken $access_token
- * @property Message\Message         $message
+ * @property Message\Message         $message_server
  * @property Curl                    $curl
  * @property Redis                   $cache
  */
 class WeChat extends Container
 {
     private $providers = [
-        AccessToken\AccessToken::class,
+        AccessToken\ServiceProvider::class,
         Message\MessageProvider::class,
     ];
 
@@ -39,7 +39,7 @@ class WeChat extends Container
     public function registryServices()
     {
         foreach ($this->providers as $k) {
-            $this->register($k);
+            $this->register(new $k);
         }
     }
 

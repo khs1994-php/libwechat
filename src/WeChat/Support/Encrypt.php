@@ -1,6 +1,6 @@
 <?php
 
-namespace WeChat;
+namespace WeChat\Support;
 
 /**
  *
