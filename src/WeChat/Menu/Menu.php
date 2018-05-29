@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Menu;
 
 use WeChat\Support\Response;
@@ -21,7 +23,7 @@ class Menu
 
     private function getUrl(string $type)
     {
-        if ($type === 'get_current_selfmenu_info') {
+        if ('get_current_selfmenu_info' === $type) {
             return 'https://api.weixin.qq.com/cgi-bin/'.$type.'?'.$this->access_token;
         }
         $url = self::BASE_URL.$type.'?'.$this->access_token;
@@ -30,13 +32,14 @@ class Menu
     }
 
     /**
-     * 创建菜单
+     * 创建菜单.
      *
      * @method post
      *
      * @param array $data
      *
      * @return string
+     *
      * @example
      * <pre>
      * {"errcode":0,"errmsg":"ok"}
@@ -44,7 +47,7 @@ class Menu
      * {"errcode":40018,"errmsg":"invalid button name size"}
      * <pre>
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141013
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141013
      */
     public function create(array $data)
     {
@@ -64,7 +67,7 @@ class Menu
      *
      * @return string
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141014
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141014
      */
     public function get()
     {
@@ -75,7 +78,7 @@ class Menu
     }
 
     /**
-     * 删除菜单
+     * 删除菜单.
      *
      * 在个性化菜单时，调用此接口会删除默认菜单及全部个性化菜单
      *
@@ -89,7 +92,7 @@ class Menu
      * {"errcode":0,"errmsg":"ok"}
      * <pre>
      *
-     * @link https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141015
+     * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141015
      */
     public function delete()
     {
@@ -100,20 +103,21 @@ class Menu
     }
 
     /**
-     * 创建个性化菜单
+     * 创建个性化菜单.
      *
      * @method post
      *
      * @param array $data
      *
      * @return string
+     *
      * @example
      *
      * <pre>
      * {"menuid":"208379533"}
      * <pre>
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455782296
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455782296
      */
     public function createConditional(array $data)
     {
@@ -125,13 +129,14 @@ class Menu
     }
 
     /**
-     * 删除个性化菜单
+     * 删除个性化菜单.
      *
      * @method delete
      *
-     * @param  string $menuId
+     * @param string $menuId
      *
      * @return string
+     *
      * @example
      *
      * <pre>
@@ -149,13 +154,13 @@ class Menu
     }
 
     /**
-     * 测试个性化菜单匹配结果
+     * 测试个性化菜单匹配结果.
      *
      * @method get
      *
-     * @param  string $userOpenID
+     * @param string $userOpenID
      *
-     * @return string      返回菜单配置
+     * @return string 返回菜单配置
      */
     public function tryMatch(string $userOpenID)
     {
@@ -168,7 +173,7 @@ class Menu
     }
 
     /**
-     * 获取自定义菜单配置
+     * 获取自定义菜单配置.
      *
      * 本接口与自定义菜单查询接口的不同之处在于，本接口无论公众号的接口是如何设置的，都能查询到接口.
      *

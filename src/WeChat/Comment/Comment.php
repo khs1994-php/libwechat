@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Comment;
 
-/**
+/*
  * 图文消息留言管理
  *
  * Class    CommentController
@@ -38,61 +40,51 @@ class Comment
         $this->access_token = $app->access_token->get();
     }
 
-    public function add()
-    {
-
-    }
-
-    public function download()
-    {
-
-    }
-
-    public function modify()
-    {
-
-    }
-
-    public function getList()
-    {
-
-    }
-
-    public function openComment()
-    {
-
-    }
-
-    public function closeComment()
-    {
-
-    }
-
-    public function getComment()
-    {
-
-    }
-
-    public function markComment()
+    public function add(): void
     {
     }
 
-    public function unmarkComment()
-    {
-
-    }
-
-    public function deleteComment()
+    public function download(): void
     {
     }
 
-    public function reployComent()
-    {
-
-    }
-
-    public function deleteReployComment()
+    public function modify(): void
     {
     }
 
+    public function getList(): void
+    {
+    }
+
+    public function openComment(): void
+    {
+    }
+
+    public function closeComment(): void
+    {
+    }
+
+    public function getComment(): void
+    {
+    }
+
+    public function markComment(): void
+    {
+    }
+
+    public function unmarkComment(): void
+    {
+    }
+
+    public function deleteComment(): void
+    {
+    }
+
+    public function reployComent(): void
+    {
+    }
+
+    public function deleteReployComment(): void
+    {
+    }
 }

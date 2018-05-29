@@ -1,25 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Message;
 
-
 /**
- * Class Response
+ * Class Response.
  *
  * 被动回复用户消息
  *
- * @package App\Http\Controllers\SDK\Message
  *
- * @link    https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140543
+ * @see    https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140543
  */
 class Response
 {
     /**
-     * 文本消息
+     * 文本消息.
      *
-     * @param  string $to_user
-     * @param  string $from_user
-     * @param  string $content
+     * @param string $to_user
+     * @param string $from_user
+     * @param string $content
+     *
      * @return string
      */
     public static function text(string $to_user, string $from_user, string $content)
@@ -36,10 +37,12 @@ class Response
     }
 
     /**
-     * 图片消息
+     * 图片消息.
+     *
      * @param string $to_user
      * @param string $from_user
      * @param string $media_id
+     *
      * @return string
      */
     public static function image(string $to_user, string $from_user, string $media_id)
@@ -56,10 +59,12 @@ class Response
     }
 
     /**
-     * 语音消息
+     * 语音消息.
+     *
      * @param string $to_user
      * @param string $from_user
      * @param string $media_id
+     *
      * @return string
      */
     public static function voice(string $to_user, string $from_user, string $media_id)
@@ -76,12 +81,14 @@ class Response
     }
 
     /**
-     * 视频消息
+     * 视频消息.
+     *
      * @param $to_user
      * @param $from_user
      * @param $media_id
      * @param $title
      * @param $description
+     *
      * @return string
      */
     public static function video($to_user, $from_user, $media_id, $title, $description)
@@ -102,7 +109,8 @@ class Response
     }
 
     /**
-     * 音乐消息
+     * 音乐消息.
+     *
      * @param string $to_user
      * @param string $from_user
      * @param string $title
@@ -110,6 +118,7 @@ class Response
      * @param string $music_url
      * @param string $hq_music_url
      * @param string $media_id
+     *
      * @return string
      */
     public static function music(string $to_user,
@@ -119,8 +128,7 @@ class Response
                                  string $music_url,
                                  string $hq_music_url,
                                  string $media_id
-    )
-    {
+    ) {
         $template = '<xml>
 <ToUserName><![CDATA[%s]]></ToUserName>
 <FromUserName><![CDATA[%s]]></FromUserName>
@@ -136,11 +144,11 @@ class Response
 </xml>';
 
         return sprintf($template, $to_user, $from_user, time(), $title, $description, $music_url, $hq_music_url, $media_id);
-
     }
 
     /**
-     * 图文消息
+     * 图文消息.
+     *
      * @param string $to_user
      * @param string $from_user
      * @param int    $count
@@ -152,6 +160,7 @@ class Response
      * @param string $description2
      * @param string $pic_url2
      * @param string $url2
+     *
      * @return string
      */
     public static function picUrl(string $to_user,

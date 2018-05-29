@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Message;
 
 use Redis;
 
 /**
- * Class Message
+ * Class Message.
  *
  * 接收微信服务器 post 过来的数据
- *
- * @package App\Http\Controllers\SDK\Message
  */
 class Message
 {
@@ -26,11 +26,11 @@ class Message
     }
 
     /**
-     * 验证消息真实性
+     * 验证消息真实性.
      *
      * @return array|null|string
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319
      */
     public function receive()
     {
@@ -50,18 +50,15 @@ class Message
         sort($array, SORT_STRING);
 
         if (sha1(implode($array)) === $signature) {
-
             // 首次验证
 
             if ($echostr) {
-
                 return $echostr;
             }
 
             // 网址中包含 openid 说明是消息
 
             if ($openid) {
-
                 return $this->exec();
             }
         }
@@ -70,7 +67,7 @@ class Message
     }
 
     /**
-     * 根据 消息类型 执行逻辑
+     * 根据 消息类型 执行逻辑.
      *
      * @return string
      */
@@ -81,7 +78,7 @@ class Message
 
         // 事件消息
 
-        if ($message_type === 'event') {
+        if ('event' === $message_type) {
             $event = new Event($postXMLObj);
             $eventType = strtolower($postXMLObj->Event);
 
@@ -90,14 +87,15 @@ class Message
 
         // 文本消息
 
-        if ($message_type === 'text') {
+        if ('text' === $message_type) {
             $text = new Text($postXMLObj, $this->cache);
+
             return $text();
         }
 
         // 地理位置消息， 链接消息
 
-        if ($message_type === 'location' || $message_type === 'link') {
+        if ('location' === $message_type || 'link' === $message_type) {
             $event = new Event($postXMLObj);
 
             return $event->$message_type();
@@ -115,7 +113,7 @@ class Message
     }
 
     /**
-     * 获取用户发来的消息
+     * 获取用户发来的消息.
      */
     private function list()
     {

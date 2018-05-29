@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat;
 
 class ShortUrl
@@ -12,15 +14,16 @@ class ShortUrl
     private static $cache;
 
     /**
-     * 长链接转短链接
+     * 长链接转短链接.
      *
-     * @param   string $url
-     * @param WeChat   $app
+     * @param string $url
+     * @param WeChat $app
      *
-     * @return  string
+     * @return string
      *
      * @throws \Exception
-     * @link    https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1443433600
+     *
+     * @see    https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1443433600
      */
     public static function get(string $url, WeChat $app)
     {
@@ -29,7 +32,6 @@ class ShortUrl
         $cache = self::cache($url);
 
         if ($cache) {
-
             return $cache;
         }
 
@@ -48,10 +50,10 @@ class ShortUrl
     }
 
     /**
-     * 缓存结果，传入 shortUrl 则缓存数据，否则为取出缓存
+     * 缓存结果，传入 shortUrl 则缓存数据，否则为取出缓存.
      *
-     * @param  string      $url
-     * @param  string|null $shortUrl
+     * @param string      $url
+     * @param string|null $shortUrl
      *
      * @return int
      */

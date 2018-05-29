@@ -1,18 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\CustomService;
 
 use WeChat\Support\Response;
 use WeChat\WeChat;
 
 /**
- * Class CustomService
+ * Class CustomService.
  *
  * 客服消息
  *
  * TODO
- *
- * @package App\Http\Controllers\SDK\CustomService
  */
 class CustomService
 {
@@ -65,7 +65,7 @@ class CustomService
         $url = self::ADD.$this->access_token;
         $data = [
             'kf_account' => $account,
-            'nickname' => $nickname
+            'nickname' => $nickname,
         ];
         $json = $this->curl->post($url, json_encode($data));
 
@@ -77,28 +77,27 @@ class CustomService
         $url = self::INVITE.$this->access_token;
         $data = [
             'kf_account' => $account,
-            'invite_wx' => $wechat
+            'invite_wx' => $wechat,
         ];
         $json = $this->curl->post($url, json_encode($data));
 
         return $this->exec($json);
     }
 
-    public function updateInfo(string $account, string $nickname)
+    public function updateInfo(string $account, string $nickname): void
     {
         $url = self::UPDATE_INFO.$this->access_token;
         $data = [
             'kf_account' => $account,
-            'nickname' => $nickname
+            'nickname' => $nickname,
         ];
 
         $json = $this->curl->post($url, json_encode($data));
     }
 
-    public function uploadHead(string $account)
+    public function uploadHead(string $account): void
     {
         $url = self::UPLOAD_HEAD.$this->access_token.http_build_query(['kf_account' => $account]);
-
     }
 
     public function delete(string $account)

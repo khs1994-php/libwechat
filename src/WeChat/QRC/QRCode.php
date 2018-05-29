@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\QRC;
 
 use Curl\Curl;
@@ -47,6 +49,7 @@ class QRCode
      * @param bool   $strType
      *
      * @return string
+     *
      * @throws \Exception
      */
     public function createForever(string $data, bool $strType = true)
@@ -61,6 +64,7 @@ class QRCode
      * @param bool   $strType
      *
      * @return string
+     *
      * @throws \Exception
      */
     public function createTemp(string $data, bool $strType = true)
@@ -69,13 +73,14 @@ class QRCode
     }
 
     /**
-     * 主函数
+     * 主函数.
      *
      * @param string $data
      * @param bool   $forever
      * @param bool   $strType
      *
      * @return string
+     *
      * @throws \Exception
      */
     private function create(string $data, bool $forever = true, bool $strType = true)
@@ -105,7 +110,7 @@ class QRCode
     }
 
     /**
-     * 永久二维码请求体
+     * 永久二维码请求体.
      *
      * @param $data
      * @param $strType
@@ -120,7 +125,7 @@ class QRCode
         $content = [
             'action_name' => $action_name,
             'action_info' => [
-                'scene' => [$scene_type => $data,],
+                'scene' => [$scene_type => $data],
             ],
         ];
 
@@ -128,7 +133,7 @@ class QRCode
     }
 
     /**
-     * 临时二维码请求体
+     * 临时二维码请求体.
      *
      * @param      $data
      * @param bool $strType
@@ -144,9 +149,7 @@ class QRCode
             'expire_seconds' => 604800,
             'action_name' => $action_name,
             'action_info' => [
-                'scene' => [$scene_type => $data,]
-                ,]
-            ,];
+                'scene' => [$scene_type => $data], ], ];
 
         return $content;
     }

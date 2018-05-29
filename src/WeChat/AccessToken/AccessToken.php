@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\AccessToken;
 
 use WeChat\WeChat;
@@ -29,7 +31,6 @@ class AccessToken
         $access_token = $this->cache->hget('wechat_access_token', 'access_token');
 
         if ($http_build_query) {
-
             return http_build_query(['access_token' => $access_token]);
         }
 
@@ -37,13 +38,14 @@ class AccessToken
     }
 
     /**
-     * 获取 access_token
+     * 获取 access_token.
      *
-     * @param  bool $force
+     * @param bool $force
      *
      * @return array
      *
      * @throws \Exception
+     *
      * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183
      */
     public function server(bool $force = false)
@@ -52,8 +54,7 @@ class AccessToken
 
         $expire_time = $this->getExpireTime();
 
-        if ($expire_time < time() || $force === true) {
-
+        if ($expire_time < time() || true === $force) {
             // access_token 的有效期目前为2小时，需定时刷新，重复获取将导致上次获取的 access_token 失效
             // 过期或强制刷新
             $access_token = $this->getForce();
@@ -78,16 +79,17 @@ class AccessToken
     }
 
     /**
-     * 获取 access_token 主函数
+     * 获取 access_token 主函数.
      *
      * @return mixed
+     *
      * @throws \Exception
      */
     private function getForce()
     {
         $url = self::BASE_URL.http_build_query([
                 'appid' => $this->app_id,
-                'secret' => $this->app_secret
+                'secret' => $this->app_secret,
             ]);
 
         $response = json_decode($this->curl->get($url), true);
@@ -105,10 +107,10 @@ class AccessToken
     }
 
     /**
-     * 从缓存中获取或设置 access_token
+     * 从缓存中获取或设置 access_token.
      *
-     * @param  string|null $access_token
-     * @param  int|null    $time
+     * @param string|null $access_token
+     * @param int|null    $time
      *
      * @return int
      */
@@ -120,13 +122,12 @@ class AccessToken
 
             return 0;
         } else {
-
             return $this->cache->hget('wechat_access_token', 'access_token');
         }
     }
 
     /**
-     * 获取过期时间
+     * 获取过期时间.
      *
      * @return mixed
      */

@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Template;
 
 use WeChat\Support\Response;
 use WeChat\WeChat;
 
 /**
- * 模板消息
+ * 模板消息.
  *
  * Class Template
- * @package App\Http\Controllers\SDK\Template
- * @link    https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
+ *
+ * @see    https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277
  */
 class Template
 {
@@ -39,13 +41,14 @@ class Template
     }
 
     /**
-     * 设置所属行业
+     * 设置所属行业.
      *
      * 每月可修改行业 1 次，行业代码请查看官方文档 1-41
      *
-     * @param  array $industry
+     * @param array $industry
      *
      * @return mixed
+     *
      * @example
      * <pre>
      * setIndustry([1,2]);
@@ -56,7 +59,7 @@ class Template
         $industryArray = [];
         $id = 0;
         foreach ($industry as $k) {
-            $id++;
+            ++$id;
             $industryArray["industry_id$id"] = $k;
         }
         $url = self::SET_INDUSTRY.$this->access_token;
@@ -79,11 +82,12 @@ class Template
     }
 
     /**
-     * 获取模板库中的模板的 ID
+     * 获取模板库中的模板的 ID.
      *
-     * @param  string $id
+     * @param string $id
      *
      * @return mixed
+     *
      * @example
      * <pre>
      * getTemplate('TM00015');
@@ -100,7 +104,7 @@ class Template
     }
 
     /**
-     * 获取模板列表
+     * 获取模板列表.
      *
      * @return mixed
      */
@@ -130,7 +134,7 @@ class Template
     }
 
     /**
-     * 发送模板消息
+     * 发送模板消息.
      *
      * @param array|null $data
      *

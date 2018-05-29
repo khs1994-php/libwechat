@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Message;
 
 /**
- * 一次性订阅消息
+ * 一次性订阅消息.
  *
  * TODO
  *
  * 不支持测试号
  *
- * @link https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1500374289_66bvB
+ * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1500374289_66bvB
  */
 class Subscribe
 {
@@ -65,11 +67,11 @@ class Subscribe
         return redirect($url);
     }
 
-    public function callback()
+    public function callback(): void
     {
         $get = Request::all();
         $action = $get['action'];
-        if ($action === 'confirm') {
+        if ('confirm' === $action) {
             $this->openid = $get['openid'];
             $this->template_id = $get['template_id'];
             $this->scene = $get['scene'];
@@ -87,11 +89,9 @@ class Subscribe
             'scene' => $this->scene,
             'title' => $title,
             'data' => [
-
-            ]
+            ],
         ];
 
         return $this->curl->post($url, $data);
     }
-
 }

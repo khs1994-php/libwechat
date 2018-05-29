@@ -1,21 +1,20 @@
 <?php
 
+declare(strict_types=1);
 
 namespace WeChat\Users;
 
 use WeChat\WeChat;
 
-
 /**
- * Class Tag
+ * Class Tag.
  *
  * 用户标签管理
  *
- * @link https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
+ * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140837
  */
 class Tag
 {
-
     const WECHAT_URL = 'https://api.weixin.qq.com/cgi-bin/tags/';
 
     const CREATE = self::WECHAT_URL.'create?';
@@ -46,7 +45,7 @@ class Tag
     }
 
     /**
-     * 创建标签
+     * 创建标签.
      *
      * @param string $tagName
      *
@@ -56,14 +55,14 @@ class Tag
     {
         return self::$curl->post(self::CREATE.self::$access_token, json_encode([
                 'tag' => [
-                    'name' => $tagName
-                ]
+                    'name' => $tagName,
+                ],
             ]
         ));
     }
 
     /**
-     * 获取公众号已创建标签
+     * 获取公众号已创建标签.
      */
     public function get()
     {
@@ -71,7 +70,7 @@ class Tag
     }
 
     /**
-     * 编辑标签
+     * 编辑标签.
      *
      * @param int    $id
      * @param string $tagName
@@ -84,13 +83,13 @@ class Tag
                 'tag' => [
                     'id' => $id,
                     'name' => $tagName,
-                ]
+                ],
             ]
         ));
     }
 
     /**
-     * 删除标签
+     * 删除标签.
      *
      * @param int $id
      *
@@ -101,13 +100,13 @@ class Tag
         return self::$curl->post(self::DELETE.self::$access_token, json_encode([
                 'tag' => [
                     'id' => $id,
-                ]
+                ],
             ]
         ));
     }
 
     /**
-     * 获取标签下用户列表
+     * 获取标签下用户列表.
      *
      * @param int         $id
      * @param string|null $openId
@@ -118,16 +117,16 @@ class Tag
     {
         return self::$curl->get(self::TAG_USERS.self::$access_token, json_encode(array_filter([
                 'tagid' => $id,
-                'next_openid' => $openId
+                'next_openid' => $openId,
             ]
         )));
     }
 
     /**
-     * 批量为用户打标签
+     * 批量为用户打标签.
      *
-     * @param  array $openIdList
-     * @param  int   $id
+     * @param array $openIdList
+     * @param int   $id
      *
      * @return mixed
      */
@@ -141,7 +140,7 @@ class Tag
     }
 
     /**
-     * 批量为用户取消标签
+     * 批量为用户取消标签.
      *
      * @param array $openIdList
      * @param int   $id
@@ -158,7 +157,7 @@ class Tag
     }
 
     /**
-     * 获取用户身上的标签列表
+     * 获取用户身上的标签列表.
      *
      * @param string $openID
      *
@@ -167,7 +166,7 @@ class Tag
     public function getUser(string $openID)
     {
         return self::$curl->post(self::USER_TAG.self::$access_token, json_encode([
-                'openid' => $openID
+                'openid' => $openID,
             ]
         ));
     }

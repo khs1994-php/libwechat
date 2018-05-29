@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\OAuth;
 
 use WeChat\Support\Response;
 use WeChat\WeChat;
 
 /**
- * Class OAuth
+ * Class OAuth.
  *
  * 微信网页授权
  *
  * 如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑
  *
- * @link https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+ * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
  */
 class OAuth
 {
@@ -42,10 +44,9 @@ class OAuth
     }
 
     /**
-     * 返回登录页面
+     * 返回登录页面.
      *
      * @param string $base_or_userinfo
-     *
      *
      * @example
      *
@@ -53,9 +54,9 @@ class OAuth
      * appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
      * <pre>
      */
-    public function login(string $base_or_userinfo = 'base'):void
+    public function login(string $base_or_userinfo = 'base'): void
     {
-        $type = $base_or_userinfo === 'base' ? 'snsapi_base' : 'snsapi_userinfo';
+        $type = 'base' === $base_or_userinfo ? 'snsapi_base' : 'snsapi_userinfo';
         $state = 'khs1994';
         $request_body = [
             'appid' => $this->app_id,
@@ -70,9 +71,9 @@ class OAuth
     }
 
     /**
-     * 回调页面
+     * 回调页面.
      *
-     * @return array|mixed  返回用户基本信息
+     * @return array|mixed 返回用户基本信息
      *
      * @example
      *
@@ -87,13 +88,12 @@ class OAuth
             'appid' => $this->app_id,
             'secret' => $this->app_secret,
             'code' => $code,
-            'grant_type' => 'authorization_code'
+            'grant_type' => 'authorization_code',
         ];
         $url = self::ACCESS_TOKEN_URL.http_build_query($data);
         $data = json_decode($this->curl->get($url));
 
         if (property_exists($data, 'errcode')) {
-
             return (array) $data;
         }
 
@@ -103,8 +103,7 @@ class OAuth
         $open_id = $data->openid;
         $scope = $data->scope;
 
-        if ($scope === 'snsapi_base') {
-
+        if ('snsapi_base' === $scope) {
             return (array) $data;
         }
         $data = $this->getUserInfo($access_token, $open_id);
@@ -113,16 +112,16 @@ class OAuth
     }
 
     /**
-     * 刷新 AccessToken
+     * 刷新 AccessToken.
      *
      * @param string $refresh_token
      */
-    public function refreshAccessToken(string $refresh_token)
+    public function refreshAccessToken(string $refresh_token): void
     {
         $data = [
             'appid' => $this->app_id,
             'grant_type' => 'refresh_token',
-            'refresh_token' => $refresh_token
+            'refresh_token' => $refresh_token,
         ];
         $url = self::REFRESH.http_build_cookie($data);
         $data = json_decode($this->curl->get($url));
@@ -135,7 +134,7 @@ class OAuth
     }
 
     /**
-     * 获取用户基本信息
+     * 获取用户基本信息.
      *
      * @param string $access_token
      * @param string $open_id
@@ -156,7 +155,7 @@ class OAuth
     }
 
     /**
-     * 验证 AccessToken
+     * 验证 AccessToken.
      *
      * @param $access_token
      * @param $open_id
@@ -167,7 +166,7 @@ class OAuth
     {
         $data = [
             'access_tolen' => $access_token,
-            'openid' => $open_id
+            'openid' => $open_id,
         ];
         $url = self::WECHAT.'auth?'.http_build_query($data);
         $data = $this->curl->get($url);

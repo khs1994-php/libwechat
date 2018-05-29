@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat;
 
 use Curl\Curl;
@@ -13,7 +15,7 @@ use Redis;
  * @property Curl                    $curl
  * @property Redis                   $cache
  */
-class WeChat extends Container
+class Wechat extends Container
 {
     private $providers = [
         AccessToken\ServiceProvider::class,
@@ -37,10 +39,10 @@ class WeChat extends Container
         parent::__construct($config);
     }
 
-    public function registryServices()
+    public function registryServices(): void
     {
         foreach ($this->providers as $k) {
-            $this->register(new $k);
+            $this->register(new $k());
         }
     }
 
@@ -48,12 +50,12 @@ class WeChat extends Container
      * @param $name
      *
      * @return mixed
+     *
      * @throws \Exception
      */
     public function __get($name)
     {
         if ($this[$name] ?? false) {
-
             return $this[$name];
         }
 

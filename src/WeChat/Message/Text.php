@@ -1,17 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Message;
 
 use Redis;
 
 /**
- * Class Text
+ * Class Text.
  *
  * 文本消息
  *
- * @link    https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453
- *
- * @package App\Http\Controllers\SDK\Message
+ * @see    https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453
  */
 class Text
 {
@@ -48,7 +48,7 @@ class Text
     }
 
     /**
-     * 关键词消息
+     * 关键词消息.
      *
      * @param $keyWord
      *

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Analysis;
 
 use WeChat\WeChat;
@@ -8,7 +10,6 @@ use WeChat\WeChat;
  * 数据统计
  *
  * Class Analysis
- * @package App\Http\Controllers\SDK\Analysis
  */
 class Analysis
 {
@@ -22,19 +23,15 @@ class Analysis
     {
     }
 
-    public static function analysis()
+    public static function analysis(): void
     {
-
     }
 
-    public function userSummary()
+    public function userSummary(): void
     {
-
     }
 
-    public function userCumulate()
+    public function userCumulate(): void
     {
-
     }
-
 }

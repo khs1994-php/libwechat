@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Message;
 
 use Redis;
 use WeChat\ShortUrl;
 use WeChat\Temp\Temp;
 
-
 /**
- * 媒体消息
+ * 媒体消息.
  */
 class Media
 {
@@ -62,7 +63,7 @@ class Media
                 $this->from_user,
                 $this->create_time,
                 $format,
-                $this->message_id
+                $this->message_id,
             ]);
 
         $voice = Temp::temp()->download($media_id);

@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Users;
 
 use WeChat\WeChat;
 
-
 /**
- * Class Black
+ * Class Black.
  *
  * 黑名单管理
  *
- * @link https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1471422259_pJMWA
+ * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1471422259_pJMWA
  */
 class Black
 {
@@ -33,22 +34,22 @@ class Black
     }
 
     /**
-     * 获取黑名单列表
+     * 获取黑名单列表.
      *
-     * @param  string|null $beginOpenId
+     * @param string|null $beginOpenId
      *
      * @return mixed
      */
     public function get(string $beginOpenId = null)
     {
         return $this->curl->post(self::GET.$this->access_token, json_encode([
-                'begin_openid' => $beginOpenId
+                'begin_openid' => $beginOpenId,
             ]
         ));
     }
 
     /**
-     * 拉黑用户
+     * 拉黑用户.
      *
      * @param array $openIdList
      *
@@ -57,13 +58,13 @@ class Black
     public function add(array $openIdList)
     {
         return $this->curl->post(self::ADD.$this->access_token, json_encode([
-                'openid_list' => $openIdList
+                'openid_list' => $openIdList,
             ]
         ));
     }
 
     /**
-     * 取消拉黑用户
+     * 取消拉黑用户.
      *
      * @param array $openIdList
      *
@@ -72,7 +73,7 @@ class Black
     public function delete(array $openIdList)
     {
         return $this->curl->post(self::ADD.$this->access_token, json_encode([
-                'openid_list' => $openIdList
+                'openid_list' => $openIdList,
             ]
         ));
     }

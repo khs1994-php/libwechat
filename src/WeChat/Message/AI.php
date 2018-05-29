@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Message;
 
 use TencentAI\Error\TencentAIError;
@@ -48,15 +50,12 @@ class AI
         try {
             $array = $this->ai->audio()->asr($voice, 3, 8000);
         } catch (TencentAIError $e) {
-
             return '语音识别错误';
         }
         $data = $array['data']['text'];
         if ($data) {
-
             return $data;
         } else {
-
             return '识别内容为空';
         }
     }

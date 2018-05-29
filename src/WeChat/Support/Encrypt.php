@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Support;
 
 /**
- *
- * 生成加密 url 以供后续测试
- *
- * @package App\Http\Controllers\SDK
+ * 生成加密 url 以供后续测试.
  */
 class Encrypt
 {

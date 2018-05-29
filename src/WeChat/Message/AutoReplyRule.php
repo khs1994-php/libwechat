@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wechat\Message;
 
 use WeChat\WeChat;
@@ -13,11 +15,11 @@ class AutoReplyRule
     private $access_token;
 
     /**
-     * 获取公众号的自动回复规则
+     * 获取公众号的自动回复规则.
      *
      * @param WeChat $app
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751299
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751299
      */
     public function __construct(WeChat $app)
     {

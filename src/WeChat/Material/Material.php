@@ -1,16 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Material;
 
 use WeChat\Support\Response;
 use WeChat\WeChat;
 
 /**
- * Class Material
+ * Class Material.
  *
  * 永久素材
- *
- * @package App\Http\Controllers\SDK\Material
  */
 class Material
 {
@@ -41,20 +41,20 @@ class Material
     }
 
     /**
-     * 新增永久图文素材
+     * 新增永久图文素材.
      *
-     * @param  string      $title
-     * @param  string      $thumb_media_id     封面图
-     * @param  string      $content            图文消息的具体内容，支持HTML标签，必须少于2万字符，小于1M，且此处会去除JS ,涉及图片url必须来源
-     *                                         "上传图文消息内的图片获取URL"接口获取。外部图片url将被过滤。
-     * @param  string      $content_source_url 原文链接
-     * @param  string|null $author
-     * @param  string|null $digest             摘要
-     * @param  bool        $show_cover_pic     是否显示封面图
+     * @param string      $title
+     * @param string      $thumb_media_id     封面图
+     * @param string      $content            图文消息的具体内容，支持HTML标签，必须少于2万字符，小于1M，且此处会去除JS ,涉及图片url必须来源
+     *                                        "上传图文消息内的图片获取URL"接口获取。外部图片url将被过滤。
+     * @param string      $content_source_url 原文链接
+     * @param string|null $author
+     * @param string|null $digest             摘要
+     * @param bool        $show_cover_pic     是否显示封面图
      *
      * @return mixed
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738729
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738729
      */
     public function addNews(string $title,
                             string $thumb_media_id,
@@ -65,6 +65,7 @@ class Material
                             bool $show_cover_pic = true)
     {
         $url = self::ADD_NEWS.$this->access_token;
+
         return Response::json($this->curl->post($url, json_encode([
             [
                 'articles' => [
@@ -76,18 +77,18 @@ class Material
                     'content' => $content,
                     'content_source_url' => $content_source_url,
                 ],
-                # 若为多图文，再跟上多个 articles,暂时只测试单图文
-            ]
+                // 若为多图文，再跟上多个 articles,暂时只测试单图文
+            ],
         ])));
-
     }
 
     /**
-     * 上传图文消息内的图片获取URL
+     * 上传图文消息内的图片获取URL.
      *
      * @param string $image
      *
      * @return mixed json
+     *
      * @example
      * <pre>
      * {"url":"http://mmbiz.qpic.cn/mmbiz/xxx"}
@@ -99,13 +100,12 @@ class Material
         $this->curl->setOpt(CURLOPT_SAFE_UPLOAD, true);
 
         return Response::json($this->curl->post($url, [
-            'media' => new \CURLFile($image)
+            'media' => new \CURLFile($image),
         ]));
-
     }
 
     /**
-     * 新增其他类型永久素材
+     * 新增其他类型永久素材.
      *
      * @param string      $file
      * @param string      $type              图片（image）、语音（voice）、视频（video）和缩略图（thumb）
@@ -117,21 +117,21 @@ class Material
     public function add(string $file, string $type, string $videoTitle = null, string $videoIntroduction = null)
     {
         $url = self::ADD.$this->access_token.'?'.http_build_query([
-                    'type' => $type
+                    'type' => $type,
                 ]
             );
         $this->curl->setOpt(CURLOPT_SAFE_UPLOAD, true);
 
         $data = [
-            'media' => new \CURLFile($file)
+            'media' => new \CURLFile($file),
         ];
 
-        if ($type == 'video') {
+        if ('video' == $type) {
             $description = [
                 'description' => json_encode([
                     'title' => $videoTitle,
-                    'introduction' => $videoIntroduction
-                ])
+                    'introduction' => $videoIntroduction,
+                ]),
             ];
             $data = array_merge($data, $description);
         }
@@ -140,51 +140,49 @@ class Material
     }
 
     /**
-     * 获取永久素材
+     * 获取永久素材.
      *
      * @param  $mediaId
      *
      * @return mixed
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738730
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738730
      */
     public function download($mediaId)
     {
         $response = $this->curl->post(self::DOWNLOAD.$this->access_token, json_encode([
-                    'media_id' => $mediaId
+                    'media_id' => $mediaId,
                 ]
             )
         );
         $is_json = json_decode($response);
         if ($is_json) {
-
             return Response::json($is_json);
         } else {
-
             return $response;
         }
     }
 
     /**
-     * 删除永久素材
+     * 删除永久素材.
      *
      * @param  $mediaId
      *
      * @return mixed
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738731
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738731
      */
     public function delete($mediaId)
     {
         return Response::json($this->curl->post(self::DELETE.$this->access_token, json_encode([
-                    'media_id' => $mediaId
+                    'media_id' => $mediaId,
                 ]
             )
         )
         );
     }
 
-    public function modify()
+    public function modify(): void
     {
     }
 
@@ -192,7 +190,7 @@ class Material
      *
      * @return mixed
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738733
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738733
      */
     public function count()
     {
@@ -200,15 +198,15 @@ class Material
     }
 
     /**
-     * 获取素材列表
+     * 获取素材列表.
      *
-     * @param  string $type   图片（image）、视频（video）、语音 （voice）、图文（news）
-     * @param  int    $offset 从全部素材的该偏移位置开始返回，0表示从第一个素材 返回
-     * @param  int    $count  返回素材的数量，取值在1到20之间
+     * @param string $type   图片（image）、视频（video）、语音 （voice）、图文（news）
+     * @param int    $offset 从全部素材的该偏移位置开始返回，0表示从第一个素材 返回
+     * @param int    $count  返回素材的数量，取值在1到20之间
      *
      * @return mixed
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738734
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738734
      */
     public function list(string $type, int $offset = 0, int $count = 20)
     {
@@ -221,5 +219,4 @@ class Material
         )
         );
     }
-
 }

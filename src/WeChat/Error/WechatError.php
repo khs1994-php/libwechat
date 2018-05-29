@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Error;
 
 class WechatError extends \Error
@@ -8,7 +10,6 @@ class WechatError extends \Error
     public $code;
 
     private const ERROR_ARRAY = [
-
     ];
 
     public function __construct(int $code, string $message = null)
@@ -21,7 +22,7 @@ class WechatError extends \Error
         }
     }
 
-    public function getJson()
+    public function getJson(): void
     {
         header('Content-type:Application/json;charset=utf-8');
 

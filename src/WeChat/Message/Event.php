@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Message;
 
 /**
- * 事件消息
+ * 事件消息.
  */
 class Event
 {
@@ -31,7 +33,7 @@ class Event
     }
 
     /**
-     * 关注\取消关注 推送消息
+     * 关注\取消关注 推送消息.
      */
     public function subscribe()
     {
@@ -45,7 +47,7 @@ class Event
     /**
      * 扫描带参数二维码
      */
-    public function scan()
+    public function scan(): void
     {
         $postXMLObj = $this->postXMLObj;
         $key = $postXMLObj->EventKey;
@@ -55,9 +57,9 @@ class Event
     }
 
     /**
-     * 用户进入对话页，自动上传位置信息
+     * 用户进入对话页，自动上传位置信息.
      */
-    public function autoUploadLocation()
+    public function autoUploadLocation(): void
     {
         $postXMLObj = $this->postXMLObj;
         $gps_latitude = $postXMLObj->Latitude;       //地理位置纬度
@@ -66,21 +68,21 @@ class Event
     }
 
     /**
-     * 以下为菜单相关消息
+     * 以下为菜单相关消息.
      *
      * 点击菜单拉取消息
      *
-     * @link https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141016
+     * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141016
      */
-    public function click()
+    public function click(): void
     {
         $eventKey = $this->postXMLObj->EventKey;
     }
 
     /**
-     * 点击菜单跳转链接
+     * 点击菜单跳转链接.
      */
-    public function view()
+    public function view(): void
     {
         $postXMLObj = $this->postXMLObj;
         $eventKey = $postXMLObj->EventKey;
@@ -88,9 +90,9 @@ class Event
     }
 
     /**
-     * 扫码推事件
+     * 扫码推事件.
      */
-    public function scancode_push()
+    public function scancode_push(): void
     {
         $postXMLObj = $this->postXMLObj;
         $eventKey = $postXMLObj->EventKey;
@@ -99,22 +101,21 @@ class Event
     }
 
     /**
-     * 扫码推事件且弹出“消息接收中”提示框
+     * 扫码推事件且弹出“消息接收中”提示框.
      */
-    public function scancode_waitmsg()
+    public function scancode_waitmsg(): void
     {
         $postXMLObj = $this->postXMLObj;
         $eventKey = $postXMLObj->EventKey;
         $scanCodeInfo = $postXMLObj->ScanCodeInfo;
         $scanType = $postXMLObj->ScanType;
         $scanResult = $postXMLObj->ScanResult;
-
     }
 
     /**
-     * 弹出系统拍照发图
+     * 弹出系统拍照发图.
      */
-    public function pic_sysphoto()
+    public function pic_sysphoto(): void
     {
         $postXMLObj = $this->postXMLObj;
         $eventKey = $postXMLObj->EventKey;
@@ -125,9 +126,9 @@ class Event
     }
 
     /**
-     * 弹出拍照或者相册发图
+     * 弹出拍照或者相册发图.
      */
-    public function pic_photo_or_album()
+    public function pic_photo_or_album(): void
     {
         $postXMLObj = $this->postXMLObj;
         $eventKey = $postXMLObj->EventKey;
@@ -138,9 +139,9 @@ class Event
     }
 
     /**
-     * 弹出微信相册发图器
+     * 弹出微信相册发图器.
      */
-    public function pic_weixin()
+    public function pic_weixin(): void
     {
         $postXMLObj = $this->postXMLObj;
         $eventKey = $postXMLObj->EventKey;
@@ -151,9 +152,9 @@ class Event
     }
 
     /**
-     * 弹出地理位置选择器
+     * 弹出地理位置选择器.
      */
-    public function location_select()
+    public function location_select(): void
     {
         $postXMLObj = $this->postXMLObj;
 
@@ -168,7 +169,7 @@ class Event
      *
      * 地理位置消息
      */
-    public function location()
+    public function location(): void
     {
         $postXMLObj = $this->postXMLObj;
         $location_x = $postXMLObj->Location_X;
@@ -178,9 +179,9 @@ class Event
     }
 
     /**
-     * 链接消息
+     * 链接消息.
      */
-    public function link()
+    public function link(): void
     {
         $postXMLObj = $this->postXMLObj;
         $title = $postXMLObj->Title;
@@ -189,21 +190,20 @@ class Event
     }
 
     /**
-     * 以下为 微信认证事件
+     * 以下为 微信认证事件.
      *
      * 资质认证成功
      */
-    public function qualification_verify_success()
+    public function qualification_verify_success(): void
     {
         $postXMLObj = $this->postXMLObj;
         $expiredTime = $postXMLObj->ExpiredTime;
-
     }
 
     /**
-     * 资质认证失败
+     * 资质认证失败.
      */
-    public function qualification_verify_fail()
+    public function qualification_verify_fail(): void
     {
         $postXMLObj = $this->postXMLObj;
         $failTime = $postXMLObj->FailTime;
@@ -211,18 +211,18 @@ class Event
     }
 
     /**
-     * 名称认证成功（即命名成功）
+     * 名称认证成功（即命名成功）.
      */
-    public function naming_verify_success()
+    public function naming_verify_success(): void
     {
         $postXMLObj = $this->postXMLObj;
         $expiredTime = $postXMLObj->ExpiredTime;
     }
 
     /**
-     * 名称认证失败（这时虽然客户端不打勾，但仍有接口权限）
+     * 名称认证失败（这时虽然客户端不打勾，但仍有接口权限）.
      */
-    public function naming_verify_fail()
+    public function naming_verify_fail(): void
     {
         $postXMLObj = $this->postXMLObj;
         $failTime = $postXMLObj->FailTime;
@@ -230,18 +230,18 @@ class Event
     }
 
     /**
-     * 年审通知
+     * 年审通知.
      */
-    public function annual_renew()
+    public function annual_renew(): void
     {
         $postXMLObj = $this->postXMLObj;
         $ExpiredTime = $postXMLObj->ExpiredTime;
     }
 
     /**
-     * 认证过期失效通知
+     * 认证过期失效通知.
      */
-    public function verify_expired()
+    public function verify_expired(): void
     {
         $postXMLObj = $this->postXMLObj;
         $ExpiredTime = $postXMLObj->ExpiredTime;

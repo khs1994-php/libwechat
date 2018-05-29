@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WeChat\Users;
 
 use WeChat\WeChat;
@@ -27,35 +29,35 @@ class Users
     }
 
     /**
-     * 设置备注
+     * 设置备注.
      *
      * 该接口暂时开放给微信认证的服务号
      *
-     * @param  string $openId
-     * @param  string $mark
+     * @param string $openId
+     * @param string $mark
      *
      * @return mixed
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140838
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140838
      */
     public function setNickName(string $openId, string $mark)
     {
         return $this->curl->post(self::MARK.$this->access_token, json_encode([
                 'openid' => $openId,
-                'remark' => $mark
+                'remark' => $mark,
             ]
         ));
     }
 
     /**
-     * 获取用户基本信息
+     * 获取用户基本信息.
      *
-     * @param  string $openId
-     * @param  string $lang
+     * @param string $openId
+     * @param string $lang
      *
      * @return mixed
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
      */
     public function getUserInfo(string $openId, string $lang = 'zh_CN')
     {
@@ -67,7 +69,7 @@ class Users
     }
 
     /**
-     * 批量获取用户数据
+     * 批量获取用户数据.
      *
      * @param array $openIdList
      *
@@ -77,27 +79,26 @@ class Users
     {
         return $this->curl->post(self::BATCH.$this->access_token, json_encode([
                 'user_list' => [
-                    $openIdList
+                    $openIdList,
                 ],
             ]
         ));
     }
 
     /**
-     * 获取用户列表
+     * 获取用户列表.
      *
-     * @param  string|null $nextOpenId
+     * @param string|null $nextOpenId
      *
      * @return mixed
      *
-     * @link   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140840
+     * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140840
      */
     public function getUsersList(string $nextOpenId = null)
     {
         return $this->curl->get(self::GET_USER_LIST.$this->access_token.'&'.http_build_query([
-                    'next_openid' => $nextOpenId
+                    'next_openid' => $nextOpenId,
                 ]
             ));
     }
-
 }
