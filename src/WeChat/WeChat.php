@@ -1,0 +1,94 @@
+<?php
+
+declare(strict_types=1);
+
+namespace WeChat;
+
+use Curl\Curl;
+use Pimple\Container;
+use Redis;
+use WeChat\Exceptions\WechatException;
+
+/**
+ * @property AccessToken\AccessToken $access_token
+ * @property AI\Client               $ai
+ * @property Base\Client             $base
+ * @property Server\Server           $server
+ * @property Temp\Client             $temp
+ * @property Template\Client         $template_message
+ * @property Curl                    $curl
+ * @property Redis                   $cache
+ * @property Url\Client              $url
+ */
+class WeChat extends Container
+{
+    private $providers = [
+        AccessToken\ServiceProvider::class,
+        AI\ServiceProvider::class,
+        Analysis\ServiceProvider::class,
+        Base\ServiceProvider::class,
+        Comment\ServiceProvider::class,
+        CustomService\ServiceProvider::class,
+        Material\ServiceProvider::class,
+        Message\ServiceProvider::class,
+        Temp\ServiceProvider::class,
+        Template\TemplateProvider::class,
+        Url\ServiceProvider::class,
+    ];
+
+    /**
+     * WeChat constructor.
+     *
+     * @param string $app_id
+     * @param string $app_secret
+     * @param string $token
+     * @param Redis  $cache
+     * @param string $tencent_ai_appid
+     * @param string $tencent_ai_appkey
+     */
+    public function __construct(string $app_id,
+                                string $app_secret,
+                                string $token,
+                                Redis $cache,
+                                string $tencent_ai_appid,
+                                string $tencent_ai_appkey)
+    {
+        $config = [
+            'app_id' => $app_id,
+            'app_secret' => $app_secret,
+            'token' => $token,
+            'tencent_ai_appid' => $tencent_ai_appid,
+            'tencent_ai_appkey' => $tencent_ai_appkey,
+            'cache' => $cache,
+        ];
+
+        parent::__construct($config);
+
+        $this['curl'] = new Curl();
+
+        $this->registryServices();
+    }
+
+    public function registryServices(): void
+    {
+        foreach ($this->providers as $k) {
+            $this->register(new $k());
+        }
+    }
+
+    /**
+     * @param $name
+     *
+     * @return mixed
+     *
+     * @throws \Exception
+     */
+    public function __get($name)
+    {
+        try {
+            return $this[$name];
+        } catch (\Throwable $e) {
+            throw new WeChatException($e->getMessage(), $e->getCode());
+        }
+    }
+}
