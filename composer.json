@@ -21,7 +21,7 @@
   "require": {
     "php": ">=7.1",
     "ext-json": "*",
-    "ext-SimpleXML":"*",
+    "ext-SimpleXML": "*",
     "doctrine/cache": "^1.6",
     "khs1994/curl": "18.06.0",
     "khs1994/tencent-ai": "18.06.0",
@@ -45,7 +45,9 @@
     "psr-4": {
       "WeChat\\": "src/WeChat/"
     },
-    "files":["src/WeChat/Kernel/helpers.php"]
+    "files": [
+      "src/WeChat/Kernel/helpers.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
@@ -57,6 +59,14 @@
   "extra": {
     "branch-alias": {
       "dev-master": "18.06-dev"
+    },
+    "laravel": {
+      "providers": [
+        "WeChat\\ServiceProvider"
+      ],
+      "aliases": {
+        "WeChat": "WeChat\\Facade"
+      }
     }
   }
 }

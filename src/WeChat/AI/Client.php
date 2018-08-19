@@ -12,8 +12,8 @@ class Client
 {
     public function __construct(WeChat $app)
     {
-        $app_id = $app->TENCENT_AI_APPID;
-        $app_key = $app->TENCENT_AI_APPKEY;
+        $app_id = $app->tencent_ai_appid;
+        $app_key = $app->tencent_ai_appkey;
 
         $this->ai = TencentAI::tencentAI((int) $app_id, $app_key);
     }

@@ -45,13 +45,15 @@ class WeChat extends Container
      * @param Redis  $cache
      * @param string $tencent_ai_appid
      * @param string $tencent_ai_appkey
+     * @param array  $options
      */
     public function __construct(string $app_id,
                                 string $app_secret,
                                 string $token,
                                 Redis $cache,
                                 string $tencent_ai_appid,
-                                string $tencent_ai_appkey)
+                                string $tencent_ai_appkey,
+                                array $options = [])
     {
         $config = [
             'app_id' => $app_id,
@@ -90,5 +92,18 @@ class WeChat extends Container
         } catch (\Throwable $e) {
             throw new WeChatException($e->getMessage(), $e->getCode());
         }
+    }
+
+    /**
+     * @param $name
+     * @param $arguments
+     *
+     * @return mixed
+     *
+     * @throws \Exception
+     */
+    public function __call($name, $arguments)
+    {
+        return $this->__get($name);
     }
 }
