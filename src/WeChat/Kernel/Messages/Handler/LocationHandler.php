@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace WeChat\Kernel\Messages\Handler;
 
 class LocationHandler extends BaseHandler
@@ -10,11 +8,14 @@ class LocationHandler extends BaseHandler
      * @var 纬度
      */
     public $location_x;
+
     /**
      * @var 经度
      */
     public $location_y;
+
     public $scale;
+
     public $label;
 
     public function __construct($message)

@@ -22,6 +22,7 @@ class LocationHandler extends BaseHandler
      * @var float 经度
      */
     public $longitude;
+
     /**
      * @var float 精度
      */

@@ -7,7 +7,9 @@ namespace WeChat\Kernel\Messages\Handler;
 class LinkHandler extends BaseHandler
 {
     public $title;
+
     public $description;
+
     public $url;
 
     public function __construct($message)

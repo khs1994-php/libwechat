@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeChat\Server;
 
 use Closure;
+use WeChat\Kernel\Messages\Text;
 use WeChat\Kernel\Support\XML;
 use WeChat\WeChat;
 
@@ -20,11 +21,6 @@ class Server
     private $cache;
 
     private $token;
-
-    /**
-     * @var WeChat
-     */
-    private $app;
 
     private $message;
 
@@ -43,7 +39,7 @@ class Server
     {
         $this->cache = $app->cache;
         $this->token = $app->token;
-        $this->app = $app;
+        $this->ai = $app->ai;
     }
 
     public function handle()
@@ -77,14 +73,18 @@ class Server
 
     public function push(Closure $message)
     {
-        $this->handle();
+        $messageXMLInstance = $this->handle();
 
         if ($this->echostr) {
             return $this;
         }
 
         if (is_callable($message)) {
-            $this->response = call_user_func($message, $this->handle());
+            $this->response = call_user_func($message, $messageXMLInstance);
+
+            if (!$this->response) {
+                $this->response = $this->aiChat($messageXMLInstance);
+            }
         }
 
         return $this;
@@ -97,5 +97,25 @@ class Server
         }
 
         return $this->response;
+    }
+
+    public function aiChat($message)
+    {
+        if ('text' !== (string) $message->MsgType) {
+            return 'success';
+        }
+
+        $fromUserName = $message->FromUserName;
+        $toUserName = $message->ToUserName;
+        $content = $message->Content;
+
+        $response_content = $this->ai->chat((string) $content, (string) $fromUserName);
+
+        $text = new Text();
+        $text->fromUserName = $toUserName;
+        $text->toUserName = $fromUserName;
+        $text->content = $response_content;
+
+        return $text->handle();
     }
 }

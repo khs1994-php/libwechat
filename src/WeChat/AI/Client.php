@@ -15,7 +15,7 @@ class Client
         $app_id = $app->tencent_ai_appid;
         $app_key = $app->tencent_ai_appkey;
 
-        $this->ai = TencentAI::tencentAI((int) $app_id, $app_key);
+        $this->ai = TencentAI::getInstance((int) $app_id, $app_key);
     }
 
     /*
