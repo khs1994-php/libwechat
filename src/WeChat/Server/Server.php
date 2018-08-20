@@ -65,26 +65,24 @@ class Server
 
             if ($openid) {
                 $this->message = XML::handle(file_get_contents('php://input'));
-
-                return $this->message;
             }
         }
     }
 
     public function push(Closure $message)
     {
-        $messageXMLInstance = $this->handle();
+        $this->handle();
 
         if ($this->echostr) {
             return $this;
         }
 
         if (is_callable($message)) {
-            $this->response = call_user_func($message, $messageXMLInstance);
+            $this->response = call_user_func($message, $this->message);
         }
 
         if (!$this->response) {
-            $this->response = $this->aiChat($messageXMLInstance);
+            $this->response = $this->aiChat();
         }
 
         return $this;
@@ -99,8 +97,10 @@ class Server
         return $this->response;
     }
 
-    public function aiChat($message)
+    public function aiChat()
     {
+        $message = $this->message;
+
         if ('text' !== (string) $message->MsgType) {
             return 'success';
         }
@@ -116,6 +116,6 @@ class Server
         $text->toUserName = $fromUserName;
         $text->content = $response_content;
 
-        return $text->handle();
+        return $text->build();
     }
 }
