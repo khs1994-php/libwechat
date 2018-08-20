@@ -81,10 +81,10 @@ class Server
 
         if (is_callable($message)) {
             $this->response = call_user_func($message, $messageXMLInstance);
+        }
 
-            if (!$this->response) {
-                $this->response = $this->aiChat($messageXMLInstance);
-            }
+        if (!$this->response) {
+            $this->response = $this->aiChat($messageXMLInstance);
         }
 
         return $this;

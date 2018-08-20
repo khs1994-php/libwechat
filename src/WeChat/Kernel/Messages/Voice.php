@@ -10,11 +10,11 @@ class Voice extends Base
 
     public $mediaId;
 
-    public function handle()
+    public function build()
     {
         $toUserName = $this->toUserName;
         $fromUserName = $this->fromUserName;
-        $createTime - $this->createTime ?? time();
+        $createTime = $this->createTime ?? time();
         $mediald = $this->mediaId;
 
         return <<<EOF

@@ -14,7 +14,7 @@ class Video extends Base
 
     public $description;
 
-    public function handle()
+    public function build()
     {
         $toUserName = $this->toUserName;
         $fromUserName = $this->fromUserName;

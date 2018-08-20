@@ -15,7 +15,7 @@ class News extends Base
         $this->news[] = compact('articles', 'title', 'description', 'picUrl', 'url');
     }
 
-    public function handle()
+    public function build()
     {
         $toUserName = $this->toUserName;
         $fromUserName = $this->fromUserName;

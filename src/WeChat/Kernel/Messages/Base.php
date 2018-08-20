@@ -14,5 +14,5 @@ abstract class Base
 
     protected $msgType = 'text';
 
-    abstract public function handle();
+    abstract public function build();
 }

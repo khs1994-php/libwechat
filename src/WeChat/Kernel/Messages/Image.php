@@ -10,7 +10,7 @@ class Image extends Base
 
     public $mediaId;
 
-    public function handle()
+    public function build()
     {
         $toUserName = $this->toUserName;
 

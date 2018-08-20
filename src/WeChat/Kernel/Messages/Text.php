@@ -10,7 +10,7 @@ class Text extends Base
 
     public $content;
 
-    public function handle()
+    public function build()
     {
         $toUserName = $this->toUserName;
         $fromUserName = $this->fromUserName;

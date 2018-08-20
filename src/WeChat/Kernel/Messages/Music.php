@@ -18,7 +18,7 @@ class Music extends Base
 
     public $thumbMediaId;
 
-    public function handle()
+    public function build()
     {
         $toUserName = $this->toUserName;
         $fromUserName = $this->fromUserName;
