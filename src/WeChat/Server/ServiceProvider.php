@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
+namespace WeChat\Server;
+
 use Pimple\ServiceProviderInterface;
-use WeChat\Server\Server;
 
 class ServiceProvider implements ServiceProviderInterface
 {

@@ -24,7 +24,7 @@
     "ext-SimpleXML": "*",
     "doctrine/cache": "^1.6",
     "khs1994/curl": "18.06.0",
-    "khs1994/tencent-ai": "18.06.0",
+    "khs1994/tencent-ai": "18.06.01",
     "pimple/pimple": "~3.0"
   },
   "require-dev": {

@@ -42,7 +42,7 @@ class Server
     public function __construct(WeChat $app)
     {
         $this->cache = $app->cache;
-        $this->token = $app->TOKEN;
+        $this->token = $app->token;
         $this->app = $app;
     }
 
@@ -77,6 +77,8 @@ class Server
 
     public function push(Closure $message)
     {
+        $this->handle();
+
         if ($this->echostr) {
             return $this;
         }
@@ -84,6 +86,8 @@ class Server
         if (is_callable($message)) {
             $this->response = call_user_func($message, $this->handle());
         }
+
+        return $this;
     }
 
     public function serve()

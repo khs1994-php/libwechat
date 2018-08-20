@@ -12,17 +12,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->mergeConfigFrom($this->configPath, 'wechat');
 
-        $this->app->signleton(WeChat::class, function () {
+        $this->app->singleton(WeChat::class, function () {
             $app_name = config('wechat.default');
 
-            return new WeChat(
-                config('wechat.'.$app_name.'.app_id'),
-                config('wechat.'.$app_name.'.app_secret'),
-                config('wechat.'.$app_name.'.token'),
-                (new Redis()),
-                config('wechat.'.$app_name.'tencent_ai.app_id'),
-                config('wechat.'.$app_name.'tencent.ai_app_secret')
-            );
+            return self::connection($app_name);
         });
 
         $this->app->alias(WeChat::class, 'wechat');
@@ -31,5 +24,25 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register(): void
     {
         $this->publishes([$this->configPath => config_path('wechat.php')], 'config');
+    }
+
+    public static function connection($app_name)
+    {
+        $redis = new \Redis();
+
+        $redis->connect(
+            env('REDIS_HOST', '127.0.0.1'),
+            (int) env('REDIS_PORT', 6379)
+        );
+
+        return new WeChat(
+            config('wechat.app.'.$app_name.'.app_id'),
+            config('wechat.app.'.$app_name.'.app_secret'),
+            config('wechat.app.'.$app_name.'.token'),
+            $redis,
+            config('wechat.app.'.$app_name.'.tencent_ai_app_id'),
+            config('wechat.app.'.$app_name.'.tencent_ai_app_key'),
+            config('wechat.app.'.$app_name.'.options', [])
+        );
     }
 }

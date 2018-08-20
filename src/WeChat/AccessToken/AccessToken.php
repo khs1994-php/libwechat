@@ -27,8 +27,8 @@ class AccessToken
     {
         $this->curl = $app->curl;
         $this->cache = $app->cache;
-        $this->app_id = $app->APP_ID;
-        $this->app_secret = $app->APP_SECRET;
+        $this->app_id = $app->app_id;
+        $this->app_secret = $app->app_secret;
     }
 
     /**
@@ -43,7 +43,7 @@ class AccessToken
         $access_token = ($this->server())['access_token'];
 
         if ($http_build_query) {
-            return http_build_query(['access_token' => $access_token]);
+            return http_build_query(compact('access_token'));
         }
 
         return $access_token;
@@ -79,15 +79,9 @@ class AccessToken
             $code = 304;
         }
 
-        $array = [
-            'code' => $code,
-            'access_token' => $access_token,
-            'force' => $force,
-            'expire_time' => $expire_time,
-            '时间' => date('Y-m-d H:i:s', $expire_time),
-        ];
+        $expire_data = date('Y-m-d H:i:s', time() + $expire_time);
 
-        return $array;
+        return compact('code', 'access_token', 'force', 'expire_time', 'expire_data');
     }
 
     /**

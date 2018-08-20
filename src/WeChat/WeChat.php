@@ -31,8 +31,9 @@ class WeChat extends Container
         CustomService\ServiceProvider::class,
         Material\ServiceProvider::class,
         Message\ServiceProvider::class,
+        Server\ServiceProvider::class,
         Temp\ServiceProvider::class,
-        Template\TemplateProvider::class,
+        Template\ServiceProvider::class,
         Url\ServiceProvider::class,
     ];
 
@@ -42,7 +43,7 @@ class WeChat extends Container
      * @param string $app_id
      * @param string $app_secret
      * @param string $token
-     * @param Redis  $cache
+     * @param        $cache
      * @param string $tencent_ai_appid
      * @param string $tencent_ai_appkey
      * @param array  $options
