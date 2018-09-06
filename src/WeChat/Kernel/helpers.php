@@ -20,6 +20,6 @@ if (!(function_exists('wechat'))) {
  * @method static Redis                          cache()
  * @method static WeChat\Url\Client              url()
  */
-class Wechat extends \WeChat\Facade
+class Wechat
 {
 }

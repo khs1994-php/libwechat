@@ -42,7 +42,7 @@ class Server
         $this->ai = $app->ai;
     }
 
-    public function handle()
+    public function handle(): void
     {
         $nonce = $_GET['nonce'] ?? null;
         $timestamp = $_GET['timestamp'] ?? null;

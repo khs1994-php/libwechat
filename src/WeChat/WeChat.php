@@ -11,14 +11,17 @@ use WeChat\Exceptions\WechatException;
 
 /**
  * @property AccessToken\AccessToken $access_token
- * @property AI\Client               $ai
- * @property Base\Client             $base
- * @property Server\Server           $server
- * @property Temp\Client             $temp
- * @property Template\Client         $template_message
- * @property Curl                    $curl
- * @property Redis                   $cache
- * @property Url\Client              $url
+ *
+ * @method AccessToken\AccessToken access_token()
+ *
+ * @property AI\Client       $ai
+ * @property Base\Client     $base
+ * @property Server\Server   $server
+ * @property Temp\Client     $temp
+ * @property Template\Client $template_message
+ * @property Curl            $curl
+ * @property Redis           $cache
+ * @property Url\Client      $url
  */
 class WeChat extends Container
 {
