@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wechat\Message;
+namespace WeChat\Message;
 
 use WeChat\WeChat;
 
