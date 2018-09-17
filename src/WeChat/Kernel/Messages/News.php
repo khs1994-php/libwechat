@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages;
 
-class News extends Base
+class News extends Message
 {
     protected $msgType = 'news';
 
@@ -19,8 +19,8 @@ class News extends Base
     {
         $toUserName = $this->toUserName;
         $fromUserName = $this->fromUserName;
-        $articleCount = count($this->news);
-        $ceateTime = $this->createTime ?? time();
+        $articleCount = \count($this->news);
+        $createTime = $this->createTime ?? time();
         $content = <<<EOF
 <xml>
 <ToUserName><![CDATA[$toUserName]]></ToUserName>

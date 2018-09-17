@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages;
 
-class Voice extends Base
+class Voice extends Message
 {
     protected $msgType = 'voice';
 

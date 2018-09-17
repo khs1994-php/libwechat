@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class LocationHandler extends BaseHandler
+class LocationHandler extends Handler
 {
     /**
      * @var 纬度

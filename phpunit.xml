@@ -5,9 +5,19 @@
             <directory>tests/WeChat</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory suffix=".php">./src/WeChat/Console</directory>
+                <file>./src/WeChat/ServiceProvider.php</file>
+                <file>./src/WeChat/Facade.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
     <groups>
         <exclude>
-            <group>DON'TTEST</group>
+            <group>dont-test</group>
         </exclude>
     </groups>
 </phpunit>

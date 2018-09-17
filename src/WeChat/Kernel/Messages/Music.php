@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages;
 
-class Music extends Base
+class Music extends Message
 {
     protected $msgType = 'music';
 
@@ -22,7 +22,7 @@ class Music extends Base
     {
         $toUserName = $this->toUserName;
         $fromUserName = $this->fromUserName;
-        $createTime - $this->createTime ?? time();
+        $createTime = $this->createTime ?? time();
         $title = $this->title;
         $description = $this->description;
         $musicUrl = $this->musicUrl;
@@ -40,7 +40,7 @@ class Music extends Base
 <Description><![CDATA[$description]]></Description>
 <MusicUrl><![CDATA[$musicUrl]]></MusicUrl>
 <HQMusicUrl><![CDATA[$HQMusicUrl]]></HQMusicUrl>
-<ThumbMediaId><![CDATA[$meumbMediaId]]></ThumbMediaId>
+<ThumbMediaId><![CDATA[$thumbMediaId]]></ThumbMediaId>
 </Music>
 </xml>
 EOF;

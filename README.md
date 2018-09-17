@@ -17,8 +17,6 @@ $ composer require khs1994/wechat
 For latest commit version:
 
 ```bash
-$ composer config minimum-stability dev
-
 $ composer require khs1994/wechat @dev
 ```
 
@@ -34,27 +32,3 @@ require __DIR__.'/vendor/autoload.php';
 ## PHP CaaS
 
 **Powered By [khs1994-docker/lnmp](https://github.com/khs1994-docker/lnmp)**
-
-## CI/CD
-
-* [Drone](https://www.khs1994.com/categories/CI/Drone/)
-
-* [Travis CI](https://travis-ci.org/khs1994-php/libwechat)
-
-* [Style CI](https://styleci.io/repos/132416052)
-
-* [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
-
-* [Renovate](https://github.com/marketplace/renovate)
-
-* [Dependabot](https://github.com/marketplace/dependabot)
-
-* [Aliyun CodePipeline](https://www.aliyun.com/product/codepipeline)
-
-* [Tencent Cloud Continuous Integration](https://cloud.tencent.com/product/cci)
-
-* [Docker Build Powered By Tencent Cloud Container Service](https://cloud.tencent.com/product/ccs)
-
-* [Docker Build Powered By Docker Cloud](https://cloud.docker.com)
-
-* [Docker Build Powered By Aliyun Container Service](https://www.aliyun.com/product/containerservice)

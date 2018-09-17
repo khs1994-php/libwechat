@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace WeChat\Kernel\Messages\Handler\Event;
+namespace WeChat\Kernel\Messages\Handler;
 
-class ViewHandler extends ClickHandler
+class ViewEventHandler extends ClickEventHandler
 {
     /**
      * @var string VIEW 点击菜单跳转链接时的事件推送

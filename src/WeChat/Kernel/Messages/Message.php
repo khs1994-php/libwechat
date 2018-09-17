@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages;
 
-abstract class Base
+class Message implements MessageInterface
 {
     public $toUserName;
 
@@ -14,5 +14,11 @@ abstract class Base
 
     protected $msgType = 'text';
 
-    abstract public function build();
+    /**
+     * @return string
+     */
+    public function build()
+    {
+        return '';
+    }
 }

@@ -34,6 +34,10 @@ class Client
 
     /**
      * 语音识别.
+     *
+     * @param $voice
+     *
+     * @return string
      */
     public function voice($voice)
     {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-abstract class TextHandler extends BaseHandler
+abstract class TextHandler extends Handler
 {
     protected $content;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class VoiceHandler extends BaseHandler
+class VoiceHandler extends Handler
 {
     public $mediaId;
 

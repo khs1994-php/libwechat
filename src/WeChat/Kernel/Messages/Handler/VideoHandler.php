@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class VideoHandler extends BaseHandler
+class VideoHandler extends Handler
 {
     public $mediaId;
 

@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-abstract class BaseHandler
+use WeChat\Kernel\Messages\Message;
+use WeChat\Kernel\Messages\MessageInterface;
+
+class Handler implements HandlerInterface
 {
     protected $response;
 
@@ -25,5 +28,13 @@ abstract class BaseHandler
         $this->createTime = $message->CreateTime;
         $this->msgType = $message->MsgType;
         $this->msgId = $message->MsgId;
+    }
+
+    /**
+     * @return null|MessageInterface
+     */
+    public function handle()
+    {
+        return new Message();
     }
 }

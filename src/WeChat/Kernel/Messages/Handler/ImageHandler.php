@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class ImageHandler extends BaseHandler
+class ImageHandler extends Handler
 {
     public $picUrl;
 

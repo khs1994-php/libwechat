@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages;
 
-class Image extends Base
+class Image extends Message
 {
     protected $msgType = 'image';
 

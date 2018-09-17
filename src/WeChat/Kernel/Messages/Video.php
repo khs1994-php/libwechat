@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages;
 
-class Video extends Base
+class Video extends Message
 {
     protected $msgType = 'video';
 

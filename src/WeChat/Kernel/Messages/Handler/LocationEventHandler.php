@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace WeChat\Kernel\Messages\Handler\Event;
+namespace WeChat\Kernel\Messages\Handler;
 
-use WeChat\Kernel\Messages\Handler\BaseHandler;
-
-class LocationHandler extends BaseHandler
+class LocationEventHandler extends Handler
 {
     /**
      * @var string 事件类型，LOCATION 上报地理位置事件

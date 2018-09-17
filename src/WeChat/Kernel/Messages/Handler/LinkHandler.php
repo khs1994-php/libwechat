@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class LinkHandler extends BaseHandler
+class LinkHandler extends Handler
 {
     public $title;
 

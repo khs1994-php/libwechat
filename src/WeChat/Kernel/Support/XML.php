@@ -8,6 +8,6 @@ class XML
 {
     public static function handle(string $xml)
     {
-        return simplexml_load_string(file_get_contents('php://input'));
+        return simplexml_load_string($xml);
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeChat\Server;
 
 use Closure;
+use WeChat\Kernel\Messages\MessageInterface;
 use WeChat\Kernel\Messages\Text;
 use WeChat\Kernel\Support\XML;
 use WeChat\WeChat;
@@ -28,6 +29,13 @@ class Server
 
     private $response;
 
+    private $messageHandlers = [];
+
+    /**
+     * @var \WeChat\Kernel\Support\Request
+     */
+    private $request;
+
     /**
      * Client constructor.
      *
@@ -40,20 +48,21 @@ class Server
         $this->cache = $app->cache;
         $this->token = $app->token;
         $this->ai = $app->ai;
+        $this->request = $app->request;
     }
 
     public function handle(): void
     {
-        $nonce = $_GET['nonce'] ?? null;
-        $timestamp = $_GET['timestamp'] ?? null;
-        $signature = $_GET['signature'] ?? null;
-        $echostr = $_GET['echostr'] ?? null;
-        $openid = $_GET['openid'] ?? null;
+        $nonce = $this->request->get('nonce', null);
+        $timestamp = $this->request->get('timestamp', null);
+        $signature = $this->request->get('signature', null);
+        $echostr = $this->request->get('echostr', null);
+        $openid = $this->request->get('openid', null);
 
         $array = [$nonce, $timestamp, $this->token];
         sort($array, SORT_STRING);
 
-        if (sha1(implode($array)) === $signature) {
+        if (sha1(implode('', $array)) === $signature) {
             // 首次验证
             if ($echostr) {
                 $this->echostr = $echostr;
@@ -62,41 +71,66 @@ class Server
             }
 
             // 网址中包含 openid 说明是消息
-
             if ($openid) {
-                $this->message = XML::handle(file_get_contents('php://input'));
+                $this->message = XML::handle($this->request->getContent());
             }
         }
     }
 
-    public function push(Closure $message)
+    /**
+     * @param Closure|string $message
+     *
+     * @return $this
+     */
+    public function pushHandler($message = null)
     {
-        $this->handle();
-
-        if ($this->echostr) {
-            return $this;
+        if (\is_callable($message)) {
+            $this->response = \call_user_func($message, $this->message);
         }
 
-        if (is_callable($message)) {
-            $this->response = call_user_func($message, $this->message);
-        }
-
-        if (!$this->response) {
-            $this->response = $this->aiChat();
+        if (\is_string($message) and class_exists($message)) {
+            $this->messageHandlers[] = $message;
         }
 
         return $this;
     }
 
-    public function serve()
+    public function register()
     {
+        $this->handle();
+
         if ($this->echostr) {
             return $this->echostr;
         }
 
-        return $this->response;
+        if ($this->response) {
+            return $this->response;
+        }
+
+        foreach ($this->messageHandlers as $message) {
+            if ($result = (new $message($this->message))->handle()) {
+                break;
+            }
+        }
+
+        // 处理逻辑返回均为空，调用 AIChat
+        $result = $result ?? $this->aiChat();
+
+        // 返回字符串 success 或 空串
+        if ('success' === $result or '' === $result) {
+            return $result;
+        }
+
+        if ($result instanceof MessageInterface) {
+            return $result->build();
+        }
+
+        return 'failure';
     }
 
+    /**
+     * @return string|Text
+     */
     public function aiChat()
     {
         $message = $this->message;
@@ -116,6 +150,6 @@ class Server
         $text->toUserName = $fromUserName;
         $text->content = $response_content;
 
-        return $text->build();
+        return $text;
     }
 }

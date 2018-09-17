@@ -8,6 +8,7 @@ use Curl\Curl;
 use Pimple\Container;
 use Redis;
 use WeChat\Exceptions\WechatException;
+use WeChat\Kernel\Support\Request;
 
 /**
  * @property AccessToken\AccessToken $access_token
@@ -20,8 +21,9 @@ use WeChat\Exceptions\WechatException;
  * @property Temp\Client     $temp
  * @property Template\Client $template_message
  * @property Curl            $curl
- * @property Redis           $cache
  * @property Url\Client      $url
+ * @property Redis           $cache
+ * @property request         $request
  */
 class WeChat extends Container
 {
@@ -71,6 +73,7 @@ class WeChat extends Container
         parent::__construct($config);
 
         $this['curl'] = new Curl();
+        $this['request'] = Request::createFromGlobals();
 
         $this->registryServices();
     }

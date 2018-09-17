@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace WeChat\Kernel\Messages\Handler\Event;
+namespace WeChat\Kernel\Messages\Handler;
 
-use WeChat\Kernel\Messages\Handler\BaseHandler;
-
-class SubscribeHandler extends BaseHandler
+class SubscribeEventHandler extends Handler
 {
     /**
      * @var string 事件类型，subscribe(订阅、未关注用户扫描二维码)、unsubscribe(取消订阅)、SCAN (已关注用户扫描二维码)
