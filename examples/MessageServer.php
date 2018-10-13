@@ -29,7 +29,7 @@ $wechat->server->pushHandler(function ($message) {
 class DemoTextMessage extends \WeChat\Kernel\Messages\Handler\TextHandler
 {
     /**
-     * @return \WeChat\Kernel\Messages\Text
+     * @return \WeChat\Kernel\Messages\Text|null
      */
     public function handle()
     {

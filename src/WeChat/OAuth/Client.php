@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\OAuth;
 
-use WeChat\Support\Response;
+use WeChat\Kernel\Support\Response;
 use WeChat\WeChat;
 
 /**
@@ -30,6 +30,9 @@ class Client
 
     const USER_INFO = self::WECHAT.'userinfo?';
 
+    /**
+     * @var Curl\Curl
+     */
     private $curl;
 
     private $app_id;
@@ -123,7 +126,7 @@ class Client
             'grant_type' => 'refresh_token',
             'refresh_token' => $refresh_token,
         ];
-        $url = self::REFRESH.http_build_cookie($data);
+        $url = self::REFRESH.http_build_query($data);
         $data = json_decode($this->curl->get($url));
 
         $access_token = $data->access_token;
