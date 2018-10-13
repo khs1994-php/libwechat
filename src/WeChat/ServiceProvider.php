@@ -10,8 +10,11 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function boot(): void
     {
-        $this->mergeConfigFrom($this->configPath, 'wechat');
+        $this->publishes([$this->configPath => config_path('wechat.php')], 'config');
+    }
 
+    public function register(): void
+    {
         $this->app->singleton(WeChat::class, function () {
             $app_name = config('wechat.default');
 
@@ -19,11 +22,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         });
 
         $this->app->alias(WeChat::class, 'wechat');
-    }
 
-    public function register(): void
-    {
-        $this->publishes([$this->configPath => config_path('wechat.php')], 'config');
+        $this->mergeConfigFrom($this->configPath, 'wechat');
     }
 
     public static function connection($app_name)

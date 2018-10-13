@@ -19,5 +19,5 @@ __pycache__
 
 # Sami
 
-build
-cache
+/build
+/cache
