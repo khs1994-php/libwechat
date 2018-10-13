@@ -15,15 +15,26 @@ use WeChat\Kernel\Support\Request;
  *
  * @method AccessToken\AccessToken access_token()
  *
- * @property AI\Client       $ai
- * @property Base\Client     $base
- * @property Server\Server   $server
- * @property Temp\Client     $temp
- * @property Template\Client $template_message
- * @property Curl            $curl
- * @property Url\Client      $url
- * @property Redis           $cache
- * @property request         $request
+ * @property AI\Client             $ai
+ * @property Analysis\Client       $analysis
+ * @property Base\Client           $base
+ * @property Comment\Client        $comment
+ * @property CustomService\Client  $customService
+ * @property Material\Client       $material
+ * @property Menu\Client           $menu
+ * @property Message\AutoReplyRule $message_auto_reply_rule
+ * @property OAuth\Client          $oauth
+ * @property QRC\Client            $qrc
+ * @property Server\Server         $server
+ * @property Temp\Client           $temp
+ * @property Template\Client       $template_message
+ * @property Url\Client            $url
+ * @property Users\Client          $users
+ * @property Users\Black           $user_black
+ * @property Users\Tag             $user_tag
+ * @property Curl                  $curl
+ * @property Redis                 $cache
+ * @property request               $request
  */
 class WeChat extends Container
 {
@@ -35,11 +46,15 @@ class WeChat extends Container
         Comment\ServiceProvider::class,
         CustomService\ServiceProvider::class,
         Material\ServiceProvider::class,
+        Menu\ServiceProvider::class,
         Message\ServiceProvider::class,
+        OAuth\ServiceProvider::class,
+        QRC\ServiceProvider::class,
         Server\ServiceProvider::class,
         Temp\ServiceProvider::class,
         Template\ServiceProvider::class,
         Url\ServiceProvider::class,
+        Users\ServiceProvider::class,
     ];
 
     /**
@@ -68,6 +83,7 @@ class WeChat extends Container
             'tencent_ai_appid' => $tencent_ai_appid,
             'tencent_ai_appkey' => $tencent_ai_appkey,
             'cache' => $cache,
+            'callback_url' => $options['callback_url'] ?? null,
         ];
 
         parent::__construct($config);

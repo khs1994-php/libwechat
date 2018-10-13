@@ -22,8 +22,6 @@ class Client
 
     const BASE_URL = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
 
-    const CALL_BACK_URL = 'https://wechat.developer.khs1994.com/oauth/callback';
-
     const ACCESS_TOKEN_URL = self::WECHAT.'oauth2/access_token?';
 
     const REFRESH = self::WECHAT.'oauth2/refresh_token?';
@@ -39,11 +37,14 @@ class Client
 
     private $app_secret;
 
+    protected $callback_url;
+
     public function __construct(WeChat $app)
     {
-        $this->app_id = $app['APP_ID'];
-        $this->app_secret = $app['APP_SECRET'];
+        $this->app_id = $app['app_id'];
+        $this->app_secret = $app['app_secret'];
         $this->curl = $app['curl'];
+        $this->callback_url = $app['callback_url'];
     }
 
     /**
@@ -63,7 +64,7 @@ class Client
         $state = session_create_id();
         $request_body = [
             'appid' => $this->app_id,
-            'redirect_uri' => self::CALL_BACK_URL,
+            'redirect_uri' => $this->callback_url,
             'response_type' => 'code',
             'scope' => $type,
             'state' => $state,

@@ -13,6 +13,7 @@ return [
             'tencent_ai_app_id' => env('TENCENT_AI_APP_ID'),
             'tencent_ai_app_key' => env('TENCENT_AI_APP_KEY'),
             'options' => [
+                'callback_url' => env('WECHAT_CALLBACK_URL'),
             ],
         ],
 
@@ -23,6 +24,7 @@ return [
             'tencent_ai_app_id' => env('TENCENT_AI_APP_ID'),
             'tencent_ai_app_key' => env('TENCENT_AI_APP_KEY'),
             'options' => [
+                'callback_url' => env('WECHAT_OTHER_CALLBACK_URL'),
             ],
         ],
     ],
