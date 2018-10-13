@@ -84,6 +84,8 @@ class Server
      */
     public function pushHandler($message = null)
     {
+        $this->handle();
+
         if (\is_callable($message)) {
             $this->response = \call_user_func($message, $this->message);
         }
@@ -97,8 +99,6 @@ class Server
 
     public function register()
     {
-        $this->handle();
-
         if ($this->echostr) {
             return $this->echostr;
         }
