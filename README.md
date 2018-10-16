@@ -8,6 +8,14 @@ A WeChat PHP Library
 
 * [Docs](https://khs1994-php.github.io/libwechat/)
 
+## 微信订阅号
+
+<p align="center">
+<img width="200" src="https://user-images.githubusercontent.com/16733187/46847944-84a96b80-ce19-11e8-9f0c-ec84b2ac463e.jpg">
+</p>
+
+<p align="center"><strong>关注项目作者微信订阅号，接收项目最新动态。</strong></p>
+
 ## Installation
 
 To Use WeChat SDK, simply:

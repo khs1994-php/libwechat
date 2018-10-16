@@ -15,13 +15,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function register(): void
     {
-        $this->app->singleton(WeChat::class, function () {
+        $this->app->singleton('wechat', function () {
             $app_name = config('wechat.default');
 
             return self::connection($app_name);
         });
 
-        $this->app->alias(WeChat::class, 'wechat');
+        $this->app->alias('wechat', WeChat::class);
 
         $this->mergeConfigFrom($this->configPath, 'wechat');
     }

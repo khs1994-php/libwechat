@@ -12,29 +12,26 @@ use WeChat\Kernel\Support\Request;
 
 /**
  * @property AccessToken\AccessToken $access_token
- *
- * @method AccessToken\AccessToken access_token()
- *
- * @property AI\Client             $ai
- * @property Analysis\Client       $analysis
- * @property Base\Client           $base
- * @property Comment\Client        $comment
- * @property CustomService\Client  $customService
- * @property Material\Client       $material
- * @property Menu\Client           $menu
- * @property Message\AutoReplyRule $message_auto_reply_rule
- * @property OAuth\Client          $oauth
- * @property QRC\Client            $qrc
- * @property Server\Server         $server
- * @property Temp\Client           $temp
- * @property Template\Client       $template_message
- * @property Url\Client            $url
- * @property Users\Client          $users
- * @property Users\Black           $user_black
- * @property Users\Tag             $user_tag
- * @property Curl                  $curl
- * @property Redis                 $cache
- * @property request               $request
+ * @property AI\Client               $ai
+ * @property Analysis\Client         $analysis
+ * @property Base\Client             $base
+ * @property Comment\Client          $comment
+ * @property CustomService\Client    $customService
+ * @property Material\Client         $material
+ * @property Menu\Client             $menu
+ * @property Message\AutoReplyRule   $message_auto_reply_rule
+ * @property OAuth\Client            $oauth
+ * @property QRC\Client              $qrc
+ * @property Server\Server           $server
+ * @property Temp\Client             $temp
+ * @property Template\Client         $template_message
+ * @property Url\Client              $url
+ * @property Users\Client            $users
+ * @property Users\Black             $user_black
+ * @property Users\Tag               $user_tag
+ * @property Curl                    $curl
+ * @property Redis                   $cache
+ * @property request                 $request
  */
 class WeChat extends Container
 {

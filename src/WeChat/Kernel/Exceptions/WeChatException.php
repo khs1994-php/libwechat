@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Exceptions;
 
-class WechatException extends \Exception
+class WeChatException extends \Exception
 {
     public $message;
 
@@ -13,6 +13,12 @@ class WechatException extends \Exception
     private const EXCEPTION_ARRAY = [
     ];
 
+    /**
+     * WeChatException constructor.
+     *
+     * @param string|null $message
+     * @param int|null    $code
+     */
     public function __construct(string $message = null, int $code = null)
     {
         $this->code = $code;
