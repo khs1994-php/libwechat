@@ -14,6 +14,6 @@ if (!(function_exists('wechat'))) {
     }
 }
 
-class Wechat extends WeChat\Facade
+class Wechat extends WeChat\Kernel\Support\Facade
 {
 }

@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace WeChat;
+namespace WeChat\Kernel\Support;
+
+use WeChat\WeChat;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-    protected $configPath = __DIR__.'/../../config/wechat.php';
+    protected $configPath = __DIR__.'/../../../../config/wechat.php';
 
     public function boot(): void
     {

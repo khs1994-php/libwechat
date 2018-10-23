@@ -63,10 +63,10 @@
     },
     "laravel": {
       "providers": [
-        "WeChat\\ServiceProvider"
+        "WeChat\\Kernel\\Support\\ServiceProvider"
       ],
       "aliases": {
-        "WeChat": "WeChat\\Facade"
+        "WeChat": "WeChat\\Kernel\\Support\\Facade"
       }
     }
   }
