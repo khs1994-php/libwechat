@@ -6,6 +6,8 @@ namespace WeChat\Kernel\Messages\Handler;
 
 class VoiceHandler extends Handler
 {
+    public $actual_msgType = 'voice';
+
     public $mediaId;
 
     public $format;
@@ -14,8 +16,8 @@ class VoiceHandler extends Handler
     {
         parent::__construct($message);
 
-        $this->mediaId = $message->MediaId;
-        $this->format = $message->Format;
-        $this->Recognition = $message->Recognition ?? null;
+        $this->mediaId = (string) $message->MediaId;
+        $this->format = (string) $message->Format;
+        $this->Recognition = (string) $message->Recognition ?? null;
     }
 }

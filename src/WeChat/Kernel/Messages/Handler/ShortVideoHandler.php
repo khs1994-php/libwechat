@@ -6,6 +6,8 @@ namespace WeChat\Kernel\Messages\Handler;
 
 class ShortVideoHandler extends Handler
 {
+    public $actual_msgType = 'shortvideo';
+
     public $mediaId;
 
     public $thumbMediaId;
@@ -14,7 +16,7 @@ class ShortVideoHandler extends Handler
     {
         parent::__construct($message);
 
-        $this->mediaId = $message->MediaId;
-        $this->thumbMediaId = $message->ThumbMediaId;
+        $this->mediaId = (string) $message->MediaId;
+        $this->thumbMediaId = (string) $message->ThumbMediaId;
     }
 }

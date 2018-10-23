@@ -6,6 +6,8 @@ namespace WeChat\Kernel\Messages\Handler;
 
 class ImageHandler extends Handler
 {
+    public $actual_msgType = 'image';
+
     public $picUrl;
 
     public $mediaId;
@@ -14,8 +16,8 @@ class ImageHandler extends Handler
     {
         parent::__construct($message);
 
-        $this->picUrl = $message->MsgType;
+        $this->picUrl = (string) $message->PicUrl;
 
-        $this->mediaId = $message->MediaId;
+        $this->mediaId = (string) $message->MediaId;
     }
 }

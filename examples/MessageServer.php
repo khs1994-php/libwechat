@@ -33,6 +33,11 @@ class DemoTextMessage extends \WeChat\Kernel\Messages\Handler\TextHandler
      */
     public function handle()
     {
+        // 用户发来的消息是否与此 Handler 匹配
+        if (null === parent::handle()) {
+            return null;
+        }
+
         // 用户发来的消息
         $content = $this->content;
 

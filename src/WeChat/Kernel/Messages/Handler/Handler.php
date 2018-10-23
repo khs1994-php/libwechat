@@ -9,6 +9,10 @@ use WeChat\Kernel\Messages\MessageInterface;
 
 class Handler implements HandlerInterface
 {
+    protected $actual_msgType = '';
+
+    protected $actual_event = '';
+
     protected $response;
 
     protected $fromUserName;
@@ -23,11 +27,11 @@ class Handler implements HandlerInterface
 
     public function __construct($message)
     {
-        $this->fromUserName = $message->ToUserName;
-        $this->toUserName = $message->FromUserName;
-        $this->createTime = $message->CreateTime;
-        $this->msgType = $message->MsgType;
-        $this->msgId = $message->MsgId;
+        $this->fromUserName = (string) $message->ToUserName;
+        $this->toUserName = (string) $message->FromUserName;
+        $this->createTime = (string) $message->CreateTime;
+        $this->msgType = (string) $message->MsgType;
+        $this->msgId = (string) $message->MsgId;
     }
 
     /**
@@ -35,6 +39,14 @@ class Handler implements HandlerInterface
      */
     public function handle()
     {
+        if ($this->actual_msgType and $this->msgType !== $this->actual_msgType) {
+            return null;
+        }
+
+        if ($this->actual_event and $this->event !== $this->actual_event) {
+            return null;
+        }
+
         return new Message();
     }
 }

@@ -16,6 +16,8 @@ class ClickEventHandler extends Handler
      */
     public $event;
 
+    public $actual_event = 'CLICK';
+
     /**
      * @var string 事件KEY值，与自定义菜单接口中KEY值对应
      */
@@ -25,7 +27,19 @@ class ClickEventHandler extends Handler
     {
         parent::__construct($message);
 
-        $this->event = $message->Event;
-        $this->eventKey = $message->EventKey;
+        $this->event = (string) $message->Event;
+        $this->eventKey = (string) $message->EventKey;
+    }
+
+    /**
+     * @return null|MessageInterface
+     */
+    public function handler()
+    {
+        if ('CLICK' !== $this->event) {
+            return null;
+        }
+
+        return new Message();
     }
 }

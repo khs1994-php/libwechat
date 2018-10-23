@@ -6,6 +6,8 @@ namespace WeChat\Kernel\Messages\Handler;
 
 class LinkHandler extends Handler
 {
+    public $actual_msgType = 'link';
+
     public $title;
 
     public $description;
@@ -16,8 +18,8 @@ class LinkHandler extends Handler
     {
         parent::__construct($message);
 
-        $this->title = $message->Title;
-        $his->description = $message->Description;
-        $this->url = $message->Url;
+        $this->title = (string) $message->Title;
+        $his->description = (string) $message->Description;
+        $this->url = (string) $message->Url;
     }
 }

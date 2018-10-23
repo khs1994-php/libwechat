@@ -6,6 +6,8 @@ namespace WeChat\Kernel\Messages\Handler;
 
 class LocationHandler extends Handler
 {
+    public $actual_msgType = 'location';
+
     /**
      * @var 纬度
      */
@@ -24,9 +26,9 @@ class LocationHandler extends Handler
     {
         parent::__construct($message);
 
-        $this->location_x = $message->Location_X;
-        $this->location_y = $message->Location_Y;
-        $this->scale = $message->Scale;
-        $this->label = $message->Lable;
+        $this->location_x = (string) $message->Location_X;
+        $this->location_y = (string) $message->Location_Y;
+        $this->scale = (string) $message->Scale;
+        $this->label = (string) $message->Lable;
     }
 }
