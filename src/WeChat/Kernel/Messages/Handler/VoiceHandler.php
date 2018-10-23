@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class VoiceHandler extends Handler
+abstract class VoiceHandler extends Handler
 {
     public $actual_msgType = 'voice';
 

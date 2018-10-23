@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class LinkHandler extends Handler
+abstract class LinkHandler extends Handler
 {
     public $actual_msgType = 'link';
 

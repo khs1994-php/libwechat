@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class LocationHandler extends Handler
+abstract class LocationHandler extends Handler
 {
     public $actual_msgType = 'location';
 

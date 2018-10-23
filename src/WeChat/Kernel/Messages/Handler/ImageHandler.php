@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class ImageHandler extends Handler
+abstract class ImageHandler extends Handler
 {
     public $actual_msgType = 'image';
 

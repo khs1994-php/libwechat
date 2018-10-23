@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace WeChat\Kernel\Messages\Handler;
 
 /**
- * 扫描带参数二维码事件 用户已关注时的事件推送
+ * 扫描带参数二维码事件，用户已关注时的事件推送
  */
-class ScanSubscribeEventHandler extends Handler
+abstract class ScanSubscribeEventHandler extends Handler
 {
     public $event;
 

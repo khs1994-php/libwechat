@@ -9,7 +9,7 @@ namespace WeChat\Kernel\Messages\Handler;
  *
  * 用户点击自定义菜单后，微信会把点击事件推送给开发者，请注意，点击菜单弹出子菜单，不会产生上报。
  */
-class ClickEventHandler extends Handler
+abstract class ClickEventHandler extends Handler
 {
     /**
      * @var string CLICK 点击菜单拉取消息时的事件推送
@@ -29,17 +29,5 @@ class ClickEventHandler extends Handler
 
         $this->event = (string) $message->Event;
         $this->eventKey = (string) $message->EventKey;
-    }
-
-    /**
-     * @return null|MessageInterface
-     */
-    public function handler()
-    {
-        if ('CLICK' !== $this->event) {
-            return null;
-        }
-
-        return new Message();
     }
 }

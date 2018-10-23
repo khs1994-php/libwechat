@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeChat\Kernel\Messages\Handler;
 
-class ShortVideoHandler extends Handler
+abstract class ShortVideoHandler extends Handler
 {
     public $actual_msgType = 'shortvideo';
 
