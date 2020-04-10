@@ -9,17 +9,23 @@ abstract class LocationHandler extends Handler
     public $actual_msgType = 'location';
 
     /**
-     * @var 纬度
+     * @var string 纬度
      */
     public $location_x;
 
     /**
-     * @var 经度
+     * @var string 经度
      */
     public $location_y;
 
+    /**
+     * @var string 地图缩放大小
+     */
     public $scale;
 
+    /**
+     * @var string 地理位置信息
+     */
     public $label;
 
     public function __construct($message)

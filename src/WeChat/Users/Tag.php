@@ -40,8 +40,6 @@ class Tag
     /**
      * Tag constructor.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      */
     public function __construct(WeChat $app)
@@ -53,8 +51,6 @@ class Tag
 
     /**
      * 创建标签.
-     *
-     * @param string $tagName
      *
      * @return mixed
      */
@@ -79,9 +75,6 @@ class Tag
     /**
      * 编辑标签.
      *
-     * @param int    $id
-     * @param string $tagName
-     *
      * @return mixed
      */
     public function update(int $id, string $tagName)
@@ -98,8 +91,6 @@ class Tag
     /**
      * 删除标签.
      *
-     * @param int $id
-     *
      * @return mixed
      */
     public function delete(int $id)
@@ -115,9 +106,6 @@ class Tag
     /**
      * 获取标签下用户列表.
      *
-     * @param int         $id
-     * @param string|null $openId
-     *
      * @return mixed
      */
     public function getUsers(int $id, string $openId = null)
@@ -131,9 +119,6 @@ class Tag
 
     /**
      * 批量为用户打标签.
-     *
-     * @param array $openIdList
-     * @param int   $id
      *
      * @return mixed
      */
@@ -149,9 +134,6 @@ class Tag
     /**
      * 批量为用户取消标签.
      *
-     * @param array $openIdList
-     * @param int   $id
-     *
      * @return mixed
      */
     public function batchDelete(array $openIdList, int $id)
@@ -165,8 +147,6 @@ class Tag
 
     /**
      * 获取用户身上的标签列表.
-     *
-     * @param string $openID
      *
      * @return mixed
      */

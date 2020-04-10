@@ -18,8 +18,6 @@ class Client
     /**
      * Menu constructor.
      *
-     * @param WeChat $app
-     *
      * @throws Exception
      */
     public function __construct(WeChat $app)
@@ -42,8 +40,6 @@ class Client
      * 创建菜单.
      *
      * @method post
-     *
-     * @param array $data
      *
      * @return string
      *
@@ -120,8 +116,6 @@ class Client
      *
      * @method post
      *
-     * @param array $data
-     *
      * @return string
      *
      * @example
@@ -148,8 +142,6 @@ class Client
      *
      * @method delete
      *
-     * @param string $menuId
-     *
      * @return string
      *
      * @example
@@ -174,8 +166,6 @@ class Client
      * 测试个性化菜单匹配结果.
      *
      * @method get
-     *
-     * @param string $userOpenID
      *
      * @return string 返回菜单配置
      *

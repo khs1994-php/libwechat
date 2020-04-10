@@ -37,8 +37,6 @@ class Client
     /**
      * QRCode constructor.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      */
     public function __construct(WeChat $app)
@@ -50,8 +48,7 @@ class Client
     /**
      * 创建永久二维码
      *
-     * @param      $data
-     * @param bool $isString
+     * @param $data
      *
      * @return string
      *
@@ -65,8 +62,7 @@ class Client
     /**
      * 创建临时二维码
      *
-     * @param      $data
-     * @param bool $isString
+     * @param $data
      *
      * @return string
      *
@@ -80,9 +76,7 @@ class Client
     /**
      * 主函数.
      *
-     * @param      $data
-     * @param bool $forever
-     * @param bool $isString
+     * @param $data
      *
      * @return string
      *
@@ -102,8 +96,7 @@ class Client
     /**
      * 永久二维码请求体.
      *
-     * @param      $data
-     * @param bool $isString
+     * @param $data
      *
      * @return array
      */
@@ -125,8 +118,7 @@ class Client
     /**
      * 临时二维码请求体.
      *
-     * @param      $data
-     * @param bool $isString
+     * @param $data
      *
      * @return array
      */

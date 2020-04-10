@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WeChat\Exceptions;
+namespace WeChat\Kernel\Exceptions;
 
 class WeChatException extends \Exception
 {
@@ -15,9 +15,6 @@ class WeChatException extends \Exception
 
     /**
      * WeChatException constructor.
-     *
-     * @param string|null $message
-     * @param int|null    $code
      */
     public function __construct(string $message = null, int $code = null)
     {

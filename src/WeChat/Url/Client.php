@@ -25,8 +25,6 @@ class Client
     /**
      * 长链接转短链接.
      *
-     * @param string $url
-     *
      * @return string
      *
      * @throws \Exception
@@ -50,7 +48,7 @@ class Client
         ];
         $json = $this->app['curl']->post($request_url, json_encode($request));
         $array = json_decode($json, true);
-        array_key_exists('short_url', $array) or die(var_dump($array));
+        \array_key_exists('short_url', $array) or die(var_dump($array));
         $short_url = $array['short_url'];
         self::cache($url, $short_url);
 
@@ -59,9 +57,6 @@ class Client
 
     /**
      * 缓存结果，传入 shortUrl 则缓存数据，否则为取出缓存.
-     *
-     * @param string      $url
-     * @param string|null $shortUrl
      *
      * @return int
      */

@@ -50,8 +50,6 @@ class Client
     /**
      * 返回登录页面.
      *
-     * @param string $base_or_userinfo
-     *
      * @example
      *
      * <pre>
@@ -117,8 +115,6 @@ class Client
 
     /**
      * 刷新 AccessToken.
-     *
-     * @param string $refresh_token
      */
     public function refreshAccessToken(string $refresh_token): void
     {
@@ -139,10 +135,6 @@ class Client
 
     /**
      * 获取用户基本信息.
-     *
-     * @param string $access_token
-     * @param string $open_id
-     * @param string $language
      *
      * @return mixed
      */

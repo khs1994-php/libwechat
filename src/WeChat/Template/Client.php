@@ -37,8 +37,6 @@ class Client
     /**
      * Template constructor.
      *
-     * @param WeChat $app
-     *
      * @throws Exception
      */
     public function __construct(Wechat $app)
@@ -51,8 +49,6 @@ class Client
      * 设置所属行业.
      *
      * 每月可修改行业 1 次，行业代码请查看官方文档 1-41
-     *
-     * @param array $industry
      *
      * @return mixed
      *
@@ -93,8 +89,6 @@ class Client
     /**
      * 获取模板库中的模板的 ID.
      *
-     * @param string $id
-     *
      * @return mixed
      *
      * @example
@@ -127,8 +121,6 @@ class Client
 
     /**
      * 删除模板
-     *
-     * @param string $id
      *
      * @return mixed
      */

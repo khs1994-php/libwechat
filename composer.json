@@ -19,18 +19,18 @@
     "issues": "https://github.com/khs1994-php/libwechat/issues"
   },
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.2",
     "ext-SimpleXML": "*",
     "ext-json": "*",
     "doctrine/cache": "^1.6",
     "khs1994/curl": "~18.06.0",
     "khs1994/tencent-ai": "~18.06.01",
     "pimple/pimple": "~3.0",
-    "symfony/http-foundation": "^3.0|^4.0"
+    "symfony/http-foundation": "^3.0 || ^4.0 || ^5.0"
   },
   "require-dev": {
     "ext-PDO": "*",
-    "phpunit/phpunit": "^7.0"
+    "phpunit/phpunit": "^8.0"
   },
   "config": {
     "platform": {
@@ -69,5 +69,8 @@
         "WeChat": "WeChat\\Kernel\\Support\\Facade"
       }
     }
+  },
+  "scripts": {
+    "fmt": "php-cs-fixer fix"
   }
 }

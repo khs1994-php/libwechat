@@ -10,11 +10,6 @@ namespace WeChat\Kernel\Support;
 class Encrypt
 {
     /**
-     * @param string      $token
-     * @param string|null $openID
-     * @param bool        $echostr
-     * @param bool        $returnArray
-     *
      * @return array|string
      */
     public static function get(string $token, string $openID = null, bool $echostr = false, bool $returnArray = false)

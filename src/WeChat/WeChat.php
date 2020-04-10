@@ -7,7 +7,7 @@ namespace WeChat;
 use Curl\Curl;
 use Pimple\Container;
 use Redis;
-use WeChat\Exceptions\WechatException;
+use WeChat\Kernel\Exceptions\WeChatException;
 use WeChat\Kernel\Support\Request;
 
 /**
@@ -57,13 +57,7 @@ class WeChat extends Container
     /**
      * WeChat constructor.
      *
-     * @param string $app_id
-     * @param string $app_secret
-     * @param string $token
-     * @param        $cache
-     * @param string $tencent_ai_appid
-     * @param string $tencent_ai_appkey
-     * @param array  $options
+     * @param $cache
      */
     public function __construct(string $app_id,
                                 string $app_secret,

@@ -17,8 +17,6 @@ class AutoReplyRule
     /**
      * 获取公众号的自动回复规则.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      *
      * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751299

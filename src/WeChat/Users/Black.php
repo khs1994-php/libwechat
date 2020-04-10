@@ -30,8 +30,6 @@ class Black
     /**
      * Black constructor.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      */
     public function __construct(WeChat $app)
@@ -42,8 +40,6 @@ class Black
 
     /**
      * 获取黑名单列表.
-     *
-     * @param string|null $beginOpenId
      *
      * @return mixed
      */
@@ -58,8 +54,6 @@ class Black
     /**
      * 拉黑用户.
      *
-     * @param array $openIdList
-     *
      * @return mixed
      */
     public function add(array $openIdList)
@@ -72,8 +66,6 @@ class Black
 
     /**
      * 取消拉黑用户.
-     *
-     * @param array $openIdList
      *
      * @return mixed
      */

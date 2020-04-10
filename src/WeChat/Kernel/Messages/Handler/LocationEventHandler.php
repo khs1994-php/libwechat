@@ -17,17 +17,17 @@ abstract class LocationEventHandler extends Handler
     public $actual_event = 'LOCATION';
 
     /**
-     * @var float 纬度
+     * @var string 纬度
      */
     public $latitude;
 
     /**
-     * @var float 经度
+     * @var string 经度
      */
     public $longitude;
 
     /**
-     * @var float 精度
+     * @var string 精度
      */
     public $precision;
 

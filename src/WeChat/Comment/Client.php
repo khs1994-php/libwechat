@@ -38,8 +38,6 @@ class Client
     /**
      * Comment constructor.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      */
     public function __construct(WeChat $app)

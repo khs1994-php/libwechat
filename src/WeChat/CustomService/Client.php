@@ -41,8 +41,6 @@ class Client
     /**
      * CustomService constructor.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      */
     public function __construct(WeChat $app)

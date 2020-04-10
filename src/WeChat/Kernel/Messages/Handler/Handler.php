@@ -35,7 +35,7 @@ class Handler implements HandlerInterface
     }
 
     /**
-     * @return null|MessageInterface
+     * @return MessageInterface|null
      */
     public function handle()
     {

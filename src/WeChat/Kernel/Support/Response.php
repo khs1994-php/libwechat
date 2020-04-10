@@ -17,9 +17,6 @@ class Response extends \Symfony\Component\HttpFoundation\Response
         return json_encode($array_or_json);
     }
 
-    /**
-     * @param string $url
-     */
     public static function redirect(string $url): void
     {
         header('Location: '.$url);

@@ -37,8 +37,6 @@ class Subscribe
     /**
      * Subscribe constructor.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      */
     private function __construct(WeChat $app)

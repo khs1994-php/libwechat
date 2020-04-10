@@ -26,6 +26,7 @@ $wechat->server->pushHandler(function ($message) {
     return $text->build();
 })->register();
 
+// pushHandler也可以传入一个继承于 \WeChat\Kernel\Messages 的类
 class DemoTextMessage extends \WeChat\Kernel\Messages\Handler\TextHandler
 {
     /**
@@ -55,7 +56,6 @@ class DemoTextMessage extends \WeChat\Kernel\Messages\Handler\TextHandler
     }
 }
 
-// pushHandler也可以传入一个继承于 \WeChat\Kernel\Messages 的类
 // 可以链式的多次调用 pushHandler
 $wechat->server
     ->pushHandler(DemoTextMessage::class)

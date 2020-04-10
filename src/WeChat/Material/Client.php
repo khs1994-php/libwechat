@@ -37,8 +37,6 @@ class Client
     /**
      * Material constructor.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      */
     public function __construct(WeChat $app)
@@ -50,12 +48,10 @@ class Client
     /**
      * 新增永久图文素材.
      *
-     * @param string      $title
      * @param string      $thumb_media_id     封面图
      * @param string      $content            图文消息的具体内容，支持HTML标签，必须少于2万字符，小于1M，且此处会去除JS ,涉及图片url必须来源
      *                                        "上传图文消息内的图片获取URL"接口获取。外部图片url将被过滤。
      * @param string      $content_source_url 原文链接
-     * @param string|null $author
      * @param string|null $digest             摘要
      * @param bool        $show_cover_pic     是否显示封面图
      *
@@ -92,8 +88,6 @@ class Client
     /**
      * 上传图文消息内的图片获取URL.
      *
-     * @param string $image
-     *
      * @return mixed json
      *
      * @example
@@ -114,7 +108,6 @@ class Client
     /**
      * 新增其他类型永久素材.
      *
-     * @param string      $file
      * @param string      $type              图片（image）、语音（voice）、视频（video）和缩略图（thumb）
      * @param string|null $videoTitle        仅视频素材需要此字段
      * @param string|null $videoIntroduction 仅视频素材需要此字段

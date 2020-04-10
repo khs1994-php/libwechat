@@ -25,8 +25,6 @@ class Client
     /**
      * Users constructor.
      *
-     * @param WeChat $app
-     *
      * @throws \Exception
      */
     public function __construct(WeChat $app)
@@ -39,9 +37,6 @@ class Client
      * 设置备注.
      *
      * 该接口暂时开放给微信认证的服务号
-     *
-     * @param string $openId
-     * @param string $mark
      *
      * @return mixed
      *
@@ -59,9 +54,6 @@ class Client
     /**
      * 获取用户基本信息.
      *
-     * @param string $openId
-     * @param string $lang
-     *
      * @return mixed
      *
      * @see   https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
@@ -78,8 +70,6 @@ class Client
     /**
      * 批量获取用户数据.
      *
-     * @param array $openIdList
-     *
      * @return mixed
      */
     public function batchGetUserInfo(array $openIdList)
@@ -94,8 +84,6 @@ class Client
 
     /**
      * 获取用户列表.
-     *
-     * @param string|null $nextOpenId
      *
      * @return mixed
      *
