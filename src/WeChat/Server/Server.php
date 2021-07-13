@@ -111,9 +111,6 @@ class Server
             }
         }
 
-        // 处理逻辑返回均为空，调用 AIChat
-        $result = $result ?? $this->aiChat();
-
         // 返回字符串 success 或 空串
         if ('success' === $result or '' === $result) {
             return $result;
@@ -124,30 +121,5 @@ class Server
         }
 
         return 'failure';
-    }
-
-    /**
-     * @return string|Text
-     */
-    public function aiChat()
-    {
-        $message = $this->message;
-
-        if ('text' !== (string) $message->MsgType) {
-            return 'success';
-        }
-
-        $fromUserName = $message->FromUserName;
-        $toUserName = $message->ToUserName;
-        $content = $message->Content;
-
-        $response_content = $this->ai->chat((string) $content, (string) $fromUserName);
-
-        $text = new Text();
-        $text->fromUserName = $toUserName;
-        $text->toUserName = $fromUserName;
-        $text->content = $response_content;
-
-        return $text;
     }
 }

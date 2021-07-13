@@ -6,7 +6,6 @@ namespace WeChat\Kernel\Support;
 
 /**
  * @method static \WeChat\AccessToken\AccessToken access_token()
- * @method static \WeChat\AI\Client               ai()
  * @method static \WeChat\Analysis\Client         analysis()
  * @method static \WeChat\Base\Client             base()
  * @method static \WeChat\Comment\Client          comment()

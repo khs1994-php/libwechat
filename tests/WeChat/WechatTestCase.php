@@ -18,7 +18,7 @@ class WechatTestCase extends TestCase
         }
 
         return self::$instance = new WeChat('1', '1', 'token',
-            new \Redis(), '1', '1', []);
+            new \Redis(), []);
     }
 
     public static function close(): void

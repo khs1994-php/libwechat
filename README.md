@@ -4,7 +4,7 @@
 
 A WeChat PHP Library
 
-**原生** 支持 Tencent AI 的微信公众平台 PHP Library
+微信公众平台 PHP Library
 
 * [Docs](https://khs1994-php.github.io/libwechat/)
 

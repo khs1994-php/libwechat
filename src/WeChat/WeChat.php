@@ -12,7 +12,6 @@ use WeChat\Kernel\Support\Request;
 
 /**
  * @property AccessToken\AccessToken $access_token
- * @property AI\Client               $ai
  * @property Analysis\Client         $analysis
  * @property Base\Client             $base
  * @property Comment\Client          $comment
@@ -37,7 +36,6 @@ class WeChat extends Container
 {
     private $providers = [
         AccessToken\ServiceProvider::class,
-        AI\ServiceProvider::class,
         Analysis\ServiceProvider::class,
         Base\ServiceProvider::class,
         Comment\ServiceProvider::class,
@@ -63,16 +61,12 @@ class WeChat extends Container
                                 string $app_secret,
                                 string $token,
                                 Redis $cache,
-                                string $tencent_ai_appid,
-                                string $tencent_ai_appkey,
                                 array $options = [])
     {
         $config = [
             'app_id' => $app_id,
             'app_secret' => $app_secret,
             'token' => $token,
-            'tencent_ai_appid' => $tencent_ai_appid,
-            'tencent_ai_appkey' => $tencent_ai_appkey,
             'cache' => $cache,
             'callback_url' => $options['callback_url'] ?? null,
         ];

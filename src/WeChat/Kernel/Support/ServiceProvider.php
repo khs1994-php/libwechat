@@ -42,8 +42,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             config('wechat.app.'.$app_name.'.app_secret'),
             config('wechat.app.'.$app_name.'.token'),
             $redis,
-            config('wechat.app.'.$app_name.'.tencent_ai_app_id'),
-            config('wechat.app.'.$app_name.'.tencent_ai_app_key'),
             config('wechat.app.'.$app_name.'.options', [])
         );
     }

@@ -6,7 +6,7 @@ use WeChat\WeChat;
 
 require __DIR__.'/../vendor/autoload.php';
 
-$wechat = new WeChat($app_id, $app_secret, $token, $cache, $tencent_ai_appid, $tencent_ai_appkey);
+$wechat = new WeChat($app_id, $app_secret, $token, $cache);
 
 // pushHandler 可以传入一个闭包，返回发给用户的消息
 $wechat->server->pushHandler(function ($message) {
